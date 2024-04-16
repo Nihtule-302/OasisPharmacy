@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderdItem extends Model
 {
+    protected $fillable = [
+        'item_Id',
+        'product_id',
+        'order_id',
+    ];
     use HasFactory;
 }
