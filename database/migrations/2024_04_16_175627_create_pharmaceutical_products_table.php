@@ -14,7 +14,7 @@ class CreatePharmaceuticalProductsTable extends Migration
     public function up()
     {
         Schema::create('pharmaceutical_products', function (Blueprint $table) {
-            $table->id();
+            $table->id("product_id");
 
             $table->foreignId("product_id")->constrained();
             $table->string("product_name", 50);

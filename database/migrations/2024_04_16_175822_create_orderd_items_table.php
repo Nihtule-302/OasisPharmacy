@@ -14,7 +14,7 @@ class CreateOrderdItemsTable extends Migration
     public function up()
     {
         Schema::create('orderd_items', function (Blueprint $table) {
-            $table->id();
+            $table->id("item_id");
             $table->foreignId("product_id")->constrained();
             $table->foreignId("order_id")->constrained();
             $table->timestamps();
