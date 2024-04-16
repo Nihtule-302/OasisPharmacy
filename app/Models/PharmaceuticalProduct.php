@@ -17,7 +17,7 @@ class PharmaceuticalProduct extends Model
     ];
     use HasFactory;
 
-    public function orderdItem(): HasMany
+    public function orderdItems(): HasMany
     {
         return $this->hasMany(OrderdItem::class);
     }
