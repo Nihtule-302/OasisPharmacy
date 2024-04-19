@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Staff extends Model
 {
     protected $fillable = [
-        'staff_id',
         'role',
         'staff_name',
         'phone_number',
@@ -18,9 +17,9 @@ class Staff extends Model
     ];
     use HasFactory;
 
-    /*public function orders(): HasMany
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
-    */
+    
 }

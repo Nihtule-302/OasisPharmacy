@@ -16,10 +16,9 @@ class CreatePharmaceuticalProductsTable extends Migration
         Schema::create('pharmaceutical_products', function (Blueprint $table) {
             $table->id("product_id");
 
-            $table->foreignId("product_id")->constrained();
             $table->string("product_name", 50);
             $table->date("expiration_date");
-            $table->integer("price");
+            $table->float("price");
             $table->string("description", 500);
             
             $table->timestamps();

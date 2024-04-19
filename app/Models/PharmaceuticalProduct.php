@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class PharmaceuticalProduct extends Model
 {
     protected $fillable = [
-        'product_id',
         'product_name',
         'expiration_date',
         'price',

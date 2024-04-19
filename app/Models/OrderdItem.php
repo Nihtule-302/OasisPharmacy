@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderdItem extends Model
 {
     protected $fillable = [
-        'item_id',
         'product_id',
         'order_id',
     ];
@@ -20,8 +19,8 @@ class OrderdItem extends Model
         return $this->belongsTo(PharmaceuticalProduct::class);
     }
     
-    /*public function order(): BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
-    }*/
+    }
 }
