@@ -16,10 +16,10 @@ class CreatePharmaceuticalProductsTable extends Migration
         Schema::create('pharmaceutical_products', function (Blueprint $table) {
             $table->id("product_id");
 
-            $table->string("product_name", 50);
+            $table->string("product_name")->unique();
             $table->date("expiration_date");
             $table->float("price");
-            $table->string("description", 500);
+            $table->string("description")->nullable();
             
             $table->timestamps();
         });

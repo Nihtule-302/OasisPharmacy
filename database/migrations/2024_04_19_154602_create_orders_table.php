@@ -18,10 +18,9 @@ class CreateOrdersTable extends Migration
 
             $table->foreignId("customer_id")->constrained();
             $table->foreignId("staff_id")->constrained();
-            $table->foreignId("item_id")->constrained();
             
             $table->dateTime('order_date');
-            $table->string('delivery_status');
+            $table->string('delivery_status',40);
             $table->float('total_price');
 
             $table->timestamps();
