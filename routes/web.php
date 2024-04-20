@@ -15,7 +15,19 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/cart', function () {
     return view('cart');
+});
+
+Route::get('/modifyProducts', function () {
+    return view('modifyProducts');
+});
+
+Route::get('/viewproduct', function () {
+    return view('viewproduct');
 });
 
 Auth::routes();
