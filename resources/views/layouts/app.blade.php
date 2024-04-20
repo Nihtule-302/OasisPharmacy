@@ -18,6 +18,7 @@
 
     <!-- MDB -->
     <link rel="stylesheet" href="style/css/mdb.min.css" />
+    
 </head>
 <body>
     <div id="app">
@@ -80,6 +81,10 @@
         </main>
     </div>
 
-    <script type="text/javascript" src="js/mdb.umd.min.js"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="style\js\mdb.umd.min.js"></script>
+
+    
 </body>
+
 </html>
