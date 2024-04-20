@@ -20,14 +20,9 @@ class Order extends Model
         'total_price',
     ];
 
-    public function staff(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Staff::class);
-    }
-
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function orderdItems(): HasMany
