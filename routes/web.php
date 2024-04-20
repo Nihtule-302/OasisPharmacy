@@ -26,6 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 
-Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modifyProducts');
+Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modify-products');
 
-Route::get('/viewProducts', [App\Http\Controllers\VeiwProductsController::class, 'index'])->name('viewProducts');
+Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');

@@ -53,15 +53,15 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" > Cart </a>
+                      <a class="nav-link" href="{{ route('cart') }}"> Cart </a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" > Products </a>
+                      <a class="nav-link" href="{{ route('view-products') }}"> Products </a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="C:\wamp64\www\OasisPharmacy\resources\views\modifyProducts.blade.php"> Modifiy Products </a>
+                      <a class="nav-link" href="{{ route('modify-products') }}"> Modifiy Products </a>
                     </li>
 
                     <li class="nav-item">

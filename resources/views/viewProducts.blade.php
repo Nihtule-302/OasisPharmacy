@@ -53,6 +53,6 @@
             $conn->close();
             ?>
         </ul>
-        <a href="cart.blade.php" class="view-cart-link">View Cart</a>
+        <a href="{{ route('cart') }}" class="view-cart-link">View Cart</a>
     </div>
 @endsection

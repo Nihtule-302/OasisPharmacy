@@ -13,7 +13,7 @@ class ModifyProductsController extends Controller
      */
     public function index()
     {
-        //
+        return view('modifyProducts');
     }
 
     /**
