@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Product Listing</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         <h2>Product Listing</h2>
         <ul>
@@ -58,5 +55,4 @@
         </ul>
         <a href="cart.blade.php" class="view-cart-link">View Cart</a>
     </div>
-</body>
-</html>
+@endsection

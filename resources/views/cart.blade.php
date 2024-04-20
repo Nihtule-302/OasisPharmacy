@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>View Cart</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         <h2>Cart</h2>
         <ul>
@@ -24,5 +21,4 @@
         </ul>
         <a href="veiwProduct.blade.php" class="continue-shopping-link">Continue Shopping</a>
     </div>
-</body>
-</html>
+@endsection

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Product Management</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         <h2>Product Management</h2>
       
@@ -77,5 +74,4 @@ if ($result->num_rows > 0) {
             ?>
         </ul>
     </div>
-</body>
-</html>
+@endsection
