@@ -53,19 +53,15 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="about.html"> About </a>
+                      <a class="nav-link" > Cart </a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="product.html"> Product </a>
+                      <a class="nav-link" > Products </a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="client.html"> Client </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact us</a>
+                      <a class="nav-link" href="C:\wamp64\www\OasisPharmacy\resources\views\modifyProducts.blade.php"> Modifiy Products </a>
                     </li>
 
                     <li class="nav-item">
@@ -121,8 +117,6 @@
                               </li>
                             @endguest
                     </li>
-
-
                   </ul>
                 </div>
               </div>
@@ -134,7 +128,6 @@
       <!-- end hero area -->
 
     <div id="app">
-
         <main class="py-4">
             @yield('content')
         </main>
@@ -143,8 +136,7 @@
     <script type="text/javascript" src="style/js/mdb.umd.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
-
-    
+  
 </body>
 
 </html>
