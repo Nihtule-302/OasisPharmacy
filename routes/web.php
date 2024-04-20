@@ -18,18 +18,14 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/cart', function () {
-    return view('cart');
-});
 
-Route::get('/modifyProducts', function () {
-    return view('modifyProducts');
-});
-
-Route::get('/viewproduct', function () {
-    return view('viewproduct');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+
+Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modifyProducts');
+
+Route::get('/viewProducts', [App\Http\Controllers\VeiwProductsController::class, 'index'])->name('viewProducts');
