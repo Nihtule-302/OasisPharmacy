@@ -59,10 +59,14 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('view-products') }}"> Products </a>
                     </li>
+                    
 
+                    @if(Auth::check() && Auth::user()->role == 'admin')
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('modify-products') }}"> Modifiy Products </a>
                     </li>
+                    @endif
+        
 
                     <li class="nav-item">
                         @guest
