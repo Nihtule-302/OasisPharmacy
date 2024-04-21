@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container-fluid p-0 overflow-hidden">
-        <!-- Background image -->
-        <div class="bg-image" style="background-image: url('path/to/your/image.jpg');">
+        <div class="bg-image"">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card bg-transparent border-0 shadow-lg">
