@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="bg-image"">
         <h2>Cart</h2>
         <ul>
             <?php
@@ -21,4 +22,5 @@
         </ul>
         <a href="{{route('view-products')}}" class="continue-shopping-link">Continue Shopping</a>
     </div>
+</div>
 @endsection
