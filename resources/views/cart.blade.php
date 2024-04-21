@@ -19,6 +19,6 @@
             }
             ?>
         </ul>
-        <a href="veiwProduct.blade.php" class="continue-shopping-link">Continue Shopping</a>
+        <a href="{{route('view-products')}}" class="continue-shopping-link">Continue Shopping</a>
     </div>
 @endsection
