@@ -4,10 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card bg-transparent border-0 shadow-lg">
 
-                <div class="card-body">
+                <div class="card-header bg-transparent border-0 text-white">
+                    <h2 class="mb-0">{{ __('Register') }}</h2>
+                </div>
+
+                <div class="card-body bg-white-opacity">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -86,6 +89,7 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
