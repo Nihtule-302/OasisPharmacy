@@ -44,8 +44,8 @@
                   </span>
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
     
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -144,6 +144,9 @@
     <script type="text/javascript" src="style/js/mdb.umd.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
+
+    <script type="text/javascript" src="styleTemplate/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="styleTemplate/js/bootstrap.js"></script>
   
 </body>
 
