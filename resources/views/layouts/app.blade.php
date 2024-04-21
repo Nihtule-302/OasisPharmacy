@@ -26,9 +26,13 @@
         <!-- responsive style -->
         <link  rel="stylesheet" href="styleTemplate/css/responsive.css" />
 
+        <!-- orginal style -->
+        <link  rel="stylesheet" href="originalStyle/css/style.css" />
+
       </head>
+
 <body class="sub_page">
-    <div class="hero_area">
+    <div class="header">
         <!-- header section strats -->
         <header class="header_section">
           <div class="container-fluid">
