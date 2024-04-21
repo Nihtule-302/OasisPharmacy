@@ -13,12 +13,43 @@
                     <div class="card-body bg-white-opacity">
                         <h3 class="card-title">Add Product</h3>
 
-                        <form action="modifyProducts.blade.php" method="post">
-                            Product ID: <input type="text" name="product_id"><br>
-                            Product Name: <input type="text" name="product_name"><br>
-                            Price: <input type="number" name="price"><br>
-                            Expiry Date: <input type="date" name="expiry_date"><br>
-                            <input type="submit" name="add_product" value="Add Product">
+                        <form action="{{ route('modify-products') }}" method="post">
+
+                            <div class="row mb-3">
+                                <label for="product_name" class="col-md-4 col-form-label text-md-end">{{ __('Product Name') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="product_name" type="text" class="form-control" name="product_name">
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Price') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="price" type="number" class="form-control" name="price">
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="expiry_date" class="col-md-4 col-form-label text-md-end">{{ __('Expiry Date') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="expiry_date" type="date" class="form-control" name="expiry_date">
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Add Product') }}
+                                    </button>
+                                </div>
+                            </div>
+                            
                         </form>
 
                         <ul>
