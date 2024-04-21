@@ -33,27 +33,4 @@
     </div>
 @endsection
 
-<style>
-    .bg-image {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh; /* Adjust the height as needed */
-        position: relative;
-    }
 
-    .bg-white-opacity {
-        background-color: rgba(255, 255, 255, 0.9); /* Adjust the opacity value as needed */
-        border-radius: 15px;
-        padding: 20px;
-    }
-
-    .container-fluid {
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    .overflow-hidden {
-        overflow: hidden;
-    }
-</style>
