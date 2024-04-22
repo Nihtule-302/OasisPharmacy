@@ -13,7 +13,8 @@
                     <div class="card-body bg-white-opacity">
                         <h3 class="card-title">Add Product</h3>
 
-                        <form action="{{ route('modify-products') }}" method="post">
+                        <form method="POST" action="{{ route('save-product') }}" >
+                            @csrf
 
                             <div class="row mb-3">
                                 <label for="product_name" class="col-md-4 col-form-label text-md-end">{{ __('Product Name') }}</label>
@@ -34,10 +35,19 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="expiry_date" class="col-md-4 col-form-label text-md-end">{{ __('Expiry Date') }}</label>
+                                <label for="expiration_date" class="col-md-4 col-form-label text-md-end">{{ __('Expiration Date	') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="expiry_date" type="date" class="form-control" name="expiry_date">
+                                    <input id="expiration_date" type="date" class="form-control" name="expiration_date">
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="description" type="text" class="form-control" name="description">
                                 </div>
                                 
                             </div>

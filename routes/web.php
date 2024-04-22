@@ -28,4 +28,6 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name
 
 Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modify-products');
 
+Route::post('/saveProduct', [App\Http\Controllers\ModifyProductsController::class, 'store'])->name('save-product');
+
 Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');

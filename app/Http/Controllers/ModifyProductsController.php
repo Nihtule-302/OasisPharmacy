@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PharmaceuticalProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ModifyProductsController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +27,7 @@ class ModifyProductsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +38,16 @@ class ModifyProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new PharmaceuticalProduct;
+
+        $product->product_name = $request->product_name;
+        $product->expiration_date = $request->expiration_date;
+        $product->price = $request->price;
+        $product->description = $request->description;
+
+        $product->save();
+
+        return view('modifyProducts');
     }
 
     /**
