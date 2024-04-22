@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class ModifyProductsController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +37,13 @@ class ModifyProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'product_name' => 'required|string|max:255',
+            'expiration_date' => 'required|date',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+        ]);
+
         $product = new PharmaceuticalProduct;
 
         $product->product_name = $request->product_name;

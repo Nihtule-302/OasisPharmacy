@@ -20,7 +20,14 @@
                                 <label for="product_name" class="col-md-4 col-form-label text-md-end">{{ __('Product Name') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="product_name" type="text" class="form-control" name="product_name">
+                                    <input id="product_name" type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name">
+
+                                    @error('product_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                                 </div>
                                 
                             </div>
@@ -29,7 +36,14 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Price') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="price" type="number" class="form-control" name="price">
+                                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price">
+
+                                    @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                                 </div>
                                 
                             </div>
@@ -38,7 +52,14 @@
                                 <label for="expiration_date" class="col-md-4 col-form-label text-md-end">{{ __('Expiration Date	') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="expiration_date" type="date" class="form-control" name="expiration_date">
+                                    <input id="expiration_date" type="date" class="form-control @error('expiration_date') is-invalid @enderror" name="expiration_date">
+
+                                    @error('expiration_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                                 </div>
                                 
                             </div>
@@ -47,7 +68,14 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control" name="description">
+                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description">
+
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                                 </div>
                                 
                             </div>
