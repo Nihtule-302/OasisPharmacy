@@ -12,7 +12,7 @@
         <meta name="author" content="" />
 
         <title>Oasis Pharmacy</title>
-        
+
 
         <!-- Template -->
 
@@ -47,7 +47,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-    
+
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                   <ul class="navbar-nav  ">
@@ -63,14 +63,14 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('view-products') }}"> Products </a>
                     </li>
-                    
+
 
                     @if(Auth::check() && Auth::user()->role == 'admin')
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('modify-products') }}"> Modifiy Products </a>
                     </li>
                     @endif
-        
+
 
                     <li class="nav-item">
                         @guest
@@ -98,15 +98,6 @@
                                   {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  @if(Auth::user()->role==1)
-                              <li>
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                              </li>
-                              @else
-                              <li>
-                                <a class="dropdown-item" href="#">Organisation</a>
-                              </li>
-                              @endif
                                   <li>
                                     <a class="dropdown-item" href="#">Change Password</a>
                                   </li>
@@ -116,7 +107,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                        
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -147,7 +138,7 @@
 
     <script type="text/javascript" src="styleTemplate/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="styleTemplate/js/bootstrap.js"></script>
-  
+
 </body>
 
 </html>
