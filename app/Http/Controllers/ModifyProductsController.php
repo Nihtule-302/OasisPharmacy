@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PharmaceuticalProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class ModifyProductsController extends Controller
@@ -16,7 +17,12 @@ class ModifyProductsController extends Controller
      */
     public function index()
     {
-        return view('modifyProducts');
+        if(Auth::check() && Auth::user()->role == 'admin'){
+            return view('modifyProducts');
+        }
+        else{
+          return redirect(route('home'));
+        }
     }
 
     /**
@@ -26,7 +32,7 @@ class ModifyProductsController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
