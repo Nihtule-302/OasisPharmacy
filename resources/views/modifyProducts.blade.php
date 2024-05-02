@@ -90,63 +90,47 @@
                             
                         </form>
 
-                        <ul>
-                            <?php
-                            // Connect to the database
-                            $servername = "127.0.0.1";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "oasis_pharmacy";
+                        <br>
+                        <br>
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+                        <h3 class="card-title">Modify Product</h3>
+                        <table>
+                            <thead>
+                              <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Expiration Date</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              @foreach($products as $product)
+                                <tr>
+                                  <td>{{$product->product_name}}</td>
+                                  <td>{{$product->price}}</td>
+                                  <td>{{$product->description}}</td>
+                                  <td>{{$product->expiration_date}}</td>
+
+
+                                  @if(Auth::check() && Auth::user()->role == 'admin')
+                                    <td>
+                                      <a href='{{route("edit-product", $product->id)}}'>
+                                        edit
+                                      </a> &nbsp&nbsp&nbsp&nbsp
+
+                                      <a href='{{route("delete-product", $product->id)}}' onclick="return confirm('Are you sure?')">
+                                        delete
+                                      </a>
+                                    </td>
+                                  @endif
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
 
                         
-                            if(isset($_POST['add_product'])) {
-                                $productName = $_POST['product_name'];
-                                $productId =$_POST['product_id'];
-                                $price = $_POST['price'];
-                                $expiryDate = $_POST['expiry_date'];
-
-                                
-                                $sql = "INSERT INTO pharmaceutical_products (product_name,product_id ,price, expiration_date) VALUES ('$productName', '$productId', '$price', '$expiryDate')";
-                                if ($conn->query($sql) === TRUE) {
-                                    echo "<li>New product added successfully.</li>";
-                                } else {
-                                    echo "Error: " . $sql . "<br>" . $conn->error;
-                                }
-                            }
-
-                            // delete product by name
-                            if(isset($_GET['delete_product'])) {
-                                $productName = $_GET['delete_product'];
-
-                                // Delete the product from the database by name
-                                $sql = "DELETE FROM pharmaceutical_products WHERE product_name='$productName'";
-                                if ($conn->query($sql) === TRUE) {
-                                    echo "<li>Product deleted successfully.</li>";
-                                } else {
-                                    echo "Error: " . $sql . "<br>" . $conn->error;
-                                }
-                            }
-
-                                    // Display  products
-                            $sql = "SELECT * FROM pharmaceutical_products";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<li>ID: {$row['product_id']} - Name: {$row['product_name']} - Price: {$row['price']} - Expiry Date: {$row['expiration_date']} <a href='modifyProducts.blade.php?delete_product={$row['product_name']}'>Delete</a></li>";
-                                }
-                            } else {
-                                echo "No products available.";
-                            }
-
-                                        $conn->close();
-                                        ?>
-                        </ul>
+                        
 
                     </div>      
                 </div>

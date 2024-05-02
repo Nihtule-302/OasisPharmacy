@@ -18,7 +18,8 @@ class ModifyProductsController extends Controller
     public function index()
     {
         if(Auth::check() && Auth::user()->role == 'admin'){
-            return view('modifyProducts');
+            $products = PharmaceuticalProduct::all();
+            return view('modifyProducts', compact('products'));
         }
         else{
           return redirect(route('home'));
