@@ -84,7 +84,7 @@
                           </li>
 
                           <li>
-                            <a class="dropdown-item" href="#">Modify Products</a>
+                            <a class="dropdown-item" href="{{ route('modify-products') }}">Modify Products</a>
                           </li>
                           
                         </ul>
