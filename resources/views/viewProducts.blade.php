@@ -10,7 +10,31 @@
                           <h2 class="mb-0"> Available Products</h2>
                       </div>
 
-                      <div class="card-body bg-white-opacity">
+                      <div class="card-body bg-white-opacity"><style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 20px 0;
+                            }
+                            th, td {
+                                text-align: left;
+                                padding: 8px;
+                                border-bottom: 1px solid #bbb;
+                            }
+                            th {
+                                background-color: #e0e0e0;
+                                color: #333;
+                            }
+                            tr:hover {
+                                background-color: #d0d0d0;
+                            }
+                            .edit-delete-cell, .add-to-cart-cell {
+                                visibility: hidden;
+                            }
+                            .auth-visible .edit-delete-cell, .auth-visible .add-to-cart-cell {
+                                visibility: visible;
+                            }
+                        </style>
                         <table>
                             <thead>
                               <tr>
@@ -18,6 +42,7 @@
                                 <th>Price</th>
                                 <th>Description</th>
                                 <th>Expiration Date</th>
+                                <th></th>
                               </tr>
                             </thead>
 
