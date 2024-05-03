@@ -29,22 +29,14 @@
                                   <td>{{$product->description}}</td>
                                   <td>{{$product->expiration_date}}</td>
 
-
-                                  @if(Auth::check() && Auth::user()->role == 'admin')
+                                  @if(Auth::check())
                                     <td>
-                                      <a href='{{route("delete-product", $product->id)}}' onclick="return confirm('Are you sure?')">
+                                      <a href='#'>
                                         add to cart
                                       </a>&nbsp&nbsp&nbsp&nbsp
-
-                                      <a href='{{route("edit-product", $product->id)}}'>
-                                        edit
-                                      </a> &nbsp&nbsp&nbsp&nbsp
-
-                                      <a href='{{route("delete-product", $product->id)}}' onclick="return confirm('Are you sure?')">
-                                        delete
-                                      </a>
                                     </td>
                                   @endif
+                                  
                                 </tr>
                               @endforeach
                             </tbody>

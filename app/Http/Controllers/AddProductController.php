@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 
-class ModifyProductsController extends Controller
+class AddProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ModifyProductsController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::check() && Auth::user()->role == 'admin'){
             $products = PharmaceuticalProduct::all();
             return view('modifyProducts', compact('products'));
         }
@@ -25,18 +25,6 @@ class ModifyProductsController extends Controller
           return redirect(route('home'));
         }
     }
-
-    public function viewAddProduct()
-    {
-        if(Auth::user()->role == 'admin'){
-            return view('addProducts');
-        }
-        else{
-          return redirect(route('home'));
-        }
-    }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -72,7 +60,7 @@ class ModifyProductsController extends Controller
 
         $product->save();
 
-        return view('addProducts')->with('successMsg','Product Added successfully');
+        return view('modifyProducts');
     }
 
     /**

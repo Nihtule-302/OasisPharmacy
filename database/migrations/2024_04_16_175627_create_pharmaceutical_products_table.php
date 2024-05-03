@@ -14,7 +14,7 @@ class CreatePharmaceuticalProductsTable extends Migration
     public function up()
     {
         Schema::create('pharmaceutical_products', function (Blueprint $table) {
-            $table->id("product_id");
+            $table->id();
 
             $table->string("product_name", 50);
             $table->date("expiration_date");

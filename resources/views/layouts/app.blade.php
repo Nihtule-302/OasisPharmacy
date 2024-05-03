@@ -66,9 +66,32 @@
 
 
                     @if(Auth::check() && Auth::user()->role == 'admin')
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('modify-products') }}"> Modifiy Products </a>
-                    </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          data-mdb-dropdown-init
+                          class="nav-link dropdown-toggle"
+                          href="#"
+                          id="navbarDropdownMenuLink"
+                          role="button"
+                          aria-expanded="false"
+                        >
+                          Product Managment 
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <li>
+                            <a class="dropdown-item" href="{{ route('add-products') }}">Add Product</a>
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#">Modify Products</a>
+                          </li>
+                          
+                        </ul>
+
+                      </li>
+
+                    
                     @endif
 
 

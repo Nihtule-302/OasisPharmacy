@@ -26,10 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 
-Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modify-products');
-Route::post('/saveProduct', [App\Http\Controllers\ModifyProductsController::class, 'store'])->name('save-product');
-Route::post('/deleteProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'destroy'])->name('delete-product');
-Route::post('/editProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'edit'])->name('edit-product');
-Route::post('/updateProduct', [App\Http\Controllers\ModifyProductsController::class, 'update'])->name('update-product');
+Route::get('/addProducts', [App\Http\Controllers\ModifyProductsController::class, 'viewAddProduct'])->name('add-products')->middleware('auth');
+Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'index'])->name('modify-products')->middleware('auth');
+Route::post('/saveProduct', [App\Http\Controllers\ModifyProductsController::class, 'store'])->name('save-product')->middleware('auth');
+Route::get('/deleteProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'destroy'])->name('delete-product')->middleware('auth');
+Route::get('/editProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'edit'])->name('edit-product')->middleware('auth');
+Route::post('/updateProduct', [App\Http\Controllers\ModifyProductsController::class, 'update'])->name('update-product')->middleware('auth');
 
 Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');
