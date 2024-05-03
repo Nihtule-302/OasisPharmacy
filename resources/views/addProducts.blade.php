@@ -15,7 +15,7 @@
                         <h3 class="card-title">Add Product</h3>
 
                         @if (session('successMsg'))
-                            <div align="center">
+                            <div class="alert alert-success" role="alert"align="center">
                                 <font size=5 face="Droid Arabic Kufi">
                                     {{ session('successMsg') }}
                                 </font>
