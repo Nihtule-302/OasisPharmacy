@@ -115,10 +115,11 @@
 
                                   @if(Auth::check() && Auth::user()->role == 'admin')
                                     <td>
+                                        <!--
                                       <a href='{{route("edit-product", $product->id)}}'>
                                         edit
                                       </a> &nbsp&nbsp&nbsp&nbsp
-
+                                    -->
                                       <a href='{{route("delete-product", $product->id)}}' onclick="return confirm('Are you sure?')">
                                         delete
                                       </a>

@@ -105,6 +105,8 @@ class ModifyProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = PharmaceuticalProduct::find($id);
+        $product->delete();
+        return redirect(route('modify-products'))->with('successMsg','job Deleted successfully');
     }
 }
