@@ -15,7 +15,7 @@ class ModifyProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewModifyProduct()
     {
         if(Auth::user()->role == 'admin'){
             $products = PharmaceuticalProduct::all();
@@ -94,7 +94,8 @@ class ModifyProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = PharmaceuticalProduct::find($id);
+        return view('editProducts',compact('product'));
     }
 
     /**
@@ -106,7 +107,14 @@ class ModifyProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = PharmaceuticalProduct::find($id);
+
+        $product->product_name = $request->product_name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->expiration_date = $request->expiration_date;
+
+        $product->save();
     }
 
     /**
