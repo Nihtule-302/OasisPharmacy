@@ -23,7 +23,7 @@
                             <br>
                         @endif
 
-                        <form method="GET" action="{{ route('edit-product',$product->id) }}" >
+                        <form method="POST" action="{{ route('update-product',$product->id) }}" >
                             @csrf
 
                             <div class="row mb-3">

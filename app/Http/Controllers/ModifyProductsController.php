@@ -115,6 +115,7 @@ class ModifyProductsController extends Controller
         $product->expiration_date = $request->expiration_date;
 
         $product->save();
+        return redirect(route('modify-products'));
     }
 
     /**
