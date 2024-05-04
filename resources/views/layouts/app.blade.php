@@ -16,18 +16,17 @@
 
         <!-- Template -->
 
-        <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('styleTemplate/css/bootstrap.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('styleTemplate/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('styleTemplate/css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('originalStyle/css/style.css') }}" />
 
-        <!-- bootstrap core css -->
-        <link rel="stylesheet" type="text/css" href="styleTemplate/css/bootstrap.css" />
 
-        <link  rel="stylesheet" href="styleTemplate/css/style.css" />
-        <!-- responsive style -->
-        <link  rel="stylesheet" href="styleTemplate/css/responsive.css" />
 
-        <!-- orginal style -->
-        <link  rel="stylesheet" href="originalStyle/css/style.css" />
+    <!-- Additional links for debugging or development -->
+    <link rel="stylesheet" href="public/styleTemplate/css/style.css.map" />
+    <link rel="stylesheet" href="public/styleTemplate/css/style.scss" />
 
       </head>
 
@@ -155,12 +154,12 @@
         </main>
     </div>
 
-    <script type="text/javascript" src="style/js/mdb.umd.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript"></script>
-
     <script type="text/javascript" src="styleTemplate/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="styleTemplate/js/bootstrap.js"></script>
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="style/js/mdb.umd.min.js"></script>
+
 
 </body>
 
