@@ -34,7 +34,7 @@
 
                                   @if(Auth::check())
                                     <td>
-                                      <a href='#'>
+                                      <a href="{{ route('add-to-cart', $product->id) }}">
                                         add to cart
                                       </a>&nbsp&nbsp&nbsp&nbsp
                                     </td>

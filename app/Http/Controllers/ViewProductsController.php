@@ -23,26 +23,40 @@ class ViewProductsController extends Controller
 
     public function addToCart(Request $request, $id)
     {
+        // Find the product by its ID
         $product = PharmaceuticalProduct::find($id);
 
-        $order = Order::where('user_id',Auth::user()->id)->first();
+        // Check if there's an existing order for the current user
+        $order = Order::where('user_id', Auth::user()->id)->first();
 
-        if($order == null)
-        {
+        // If no order exists, create a new one
+        if ($order === null) {
             $order = new Order;
+            $order->user_id = Auth::user()->id;
             $order->status = "In Cart";
             $order->total_price = 0;
             $order->save();
         }
 
-        $item = new OrderdItem;
+        // Check if the product is already in the cart
+        $item = OrderdItem::where('order_id', $order->id)
+                        ->where("product_id", $product->id)
+                        ->first();
 
-        $item->order_id = $order->id;
-        $item->product_id = $product->id;
-        $item->quantity = 1;
+        // If the product is not in the cart, add it as a new item
+        if ($item === null) {
+            $item = new OrderdItem;
+            $item->order_id = $order->id;
+            $item->product_id = $product->id;
+            $item->quantity = 1;
+            $item->save();
+        } else {
+            // If the product is already in the cart, increase its quantity
+            $item->quantity += 1;
+            $item->save();
+        }
 
-        $item->save();
-
-        return redirect()->route('viewProduct');
+        return redirect()->route('view-products');
     }
+
 }
