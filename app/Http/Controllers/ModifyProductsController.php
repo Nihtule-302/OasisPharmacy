@@ -61,6 +61,7 @@ class ModifyProductsController extends Controller
             'expiration_date' => 'required|date',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string',
+            'quantity' => 'required|numeric|min:0',
         ]);
 
         $product = new PharmaceuticalProduct;
@@ -69,6 +70,7 @@ class ModifyProductsController extends Controller
         $product->expiration_date = $request->expiration_date;
         $product->price = $request->price;
         $product->description = $request->description;
+        $product->quantity = $request->quantity;
 
         $product->save();
 
@@ -113,6 +115,7 @@ class ModifyProductsController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->expiration_date = $request->expiration_date;
+        $product->quantity = $request->quantity;
 
         $product->save();
         return redirect(route('modify-products'));

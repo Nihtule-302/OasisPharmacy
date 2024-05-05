@@ -49,6 +49,7 @@ class AddProductController extends Controller
             'expiration_date' => 'required|date',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string',
+            'quantity' => 'required|numeric|min:0',
         ]);
 
         $product = new PharmaceuticalProduct;
@@ -57,6 +58,7 @@ class AddProductController extends Controller
         $product->expiration_date = $request->expiration_date;
         $product->price = $request->price;
         $product->description = $request->description;
+        $product->quantity = $request->quantity;
 
         $product->save();
 
