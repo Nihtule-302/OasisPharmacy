@@ -20,6 +20,7 @@
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Expiration Date</th>
+                                    <th>Quantity</th>                                    
                                     <th></th> <!-- Placeholder header for edit/delete -->
                                 </tr>
                             </thead>
@@ -30,6 +31,7 @@
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->expiration_date}}</td>
+                                    <td>{{$product->quantity}}</td>
                                     <td class="edit-delete-cell">
                                         <a href="{{route('edit-product', $product->id)}}">edit</a>
                                         &nbsp; &nbsp; &nbsp;

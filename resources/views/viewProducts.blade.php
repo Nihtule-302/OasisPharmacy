@@ -18,6 +18,7 @@
                                 <th>Price</th>
                                 <th>Description</th>
                                 <th>Expiration Date</th>
+                                <th>Quantity</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -29,6 +30,7 @@
                                   <td>{{$product->price}}</td>
                                   <td>{{$product->description}}</td>
                                   <td>{{$product->expiration_date}}</td>
+                                  <td>{{$product->quantity}}</td>
 
                                   @if(Auth::check())
                                     <td>

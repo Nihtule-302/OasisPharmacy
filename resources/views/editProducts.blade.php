@@ -90,6 +90,21 @@
                                 
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="quantity" class="col-md-4 col-form-label text-md-end">{{ __('Quantity') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="quantity" type="int" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ $product->quantity }}" required>
+
+                                    @error('quantity')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
