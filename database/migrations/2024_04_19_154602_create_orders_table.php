@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId("user_id")->constrained();
             
             $table->enum('status', ['In Cart', 'Finalized'])->default('In Cart');
-            $table->dateTime('order_date');
-            $table->string('delivery_status');
+            $table->dateTime('order_date')->nullable();
+            $table->string('delivery_status')->nullable();
             $table->float('total_price');
 
             $table->timestamps();
