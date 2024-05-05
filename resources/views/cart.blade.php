@@ -17,23 +17,27 @@
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Quantity</th> 
+                                <th></th> 
                               </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                session_start();
-                                // Check if cart is empty
-                                if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                                    $totalPrice = 0;
-                                    foreach($_SESSION['cart'] as $item) {
-                                        echo "<tr><td>{$item['name']}</td><td>\${$item['price']}</td></tr>";
-                                        $totalPrice += $item['price'];
-                                    }
-                                    echo "<tr><td><strong>Total Price</strong></td><td><strong>\$$totalPrice</strong></td></tr>";
-                                } else {
-                                    echo "<tr><td colspan='3'>Cart is empty.</td></tr>";
-                                }
-                                ?>
+                                @foreach($items as $item)
+                                <tr>
+                                  <td>{{$item->product_name}}</td>
+                                  <td>{{$item->price}}</td>
+                                  <td>{{$item->quantity}}</td>
+                                  
+
+                                  @if(Auth::check())
+                                    <td>
+                                      <a href="{{ route('cart'/*, $item->product_id*/) }}">
+                                         remove
+                                      </a>&nbsp&nbsp&nbsp&nbsp
+                                    </td>
+                                  @endif
+                    
+                                </tr>
+                              @endforeach
                             </tbody>
                         </table>
                         <a href="{{route('view-products')}}" class="continue-shopping-link">Continue Shopping</a>    

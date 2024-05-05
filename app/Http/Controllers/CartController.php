@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderdItem;
+use App\Models\PharmaceuticalProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -13,8 +17,19 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart');
+        $user_id = Auth::user()->id;
+
+        $order = Order::where('user_id', $user_id)->first();
+
+        
+        $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
+            ->select('pharmaceutical_products.*', 'orderd_items.quantity')
+            ->where('orderd_items.order_id', $order->id)
+            ->get();
+
+        return view('cart', compact('items', 'order'));
     }
+
 
     /**
      * Show the form for creating a new resource.
