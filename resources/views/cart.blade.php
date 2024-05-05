@@ -40,7 +40,19 @@
                               @endforeach
                             </tbody>
                         </table>
-                        <a href="{{route('view-products')}}" class="continue-shopping-link">Continue Shopping</a>    
+                        Total Price = {{$totalCost}}
+                          
+                        
+                        <br>
+                        <br>
+
+                        <div class="col-md-6 offset-md-3">
+                          <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">
+                            Buy
+                          </button>
+                        </div>
+                        
+
                     </div>
                 </div>
             </div>

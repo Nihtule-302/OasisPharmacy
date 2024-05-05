@@ -27,14 +27,21 @@ class CartController extends Controller
                 ->select('pharmaceutical_products.*', 'orderd_items.quantity')
                 ->where('orderd_items.order_id', $order->id)
                 ->get();
+            
+            // Calculate the total cost
+            $totalCost = $items->sum(function ($item) {
+                return $item->price * $item->quantity;
+            });
+            
         } else {
             // If no order exists for the user, set items to an empty collection
             $items = collect();
+            $totalCost = 0; // Set total cost to 0
         }
 
-
-        return view('cart', compact('items', 'order'));
+        return view('cart', compact('items', 'order', 'totalCost'));
     }
+
 
 
     /**
