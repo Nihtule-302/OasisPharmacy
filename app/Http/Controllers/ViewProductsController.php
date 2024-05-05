@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PharmaceuticalProduct;
+use App\Models\Order;
+use App\Models\OrderdItem;
+use Illuminate\Support\Facades\Auth;
 
 class ViewProductsController extends Controller
 {
@@ -18,19 +21,27 @@ class ViewProductsController extends Controller
         return view('viewProducts', compact('products'));
     }
 
-    public function addToCart(Request $request)
+    public function addToCart(Request $request, $id)
     {
-        $productName = $request->input('Name');
-        $productPrice = $request->input('Price');
+        $product = PharmaceuticalProduct::find($id);
 
-        
-        $cart = $request->session()->get('cart', []);
+        $order = Order::where('user_id',Auth::user()->id)->first();
 
-        
-        $product = ['name' => $productName, 'price' => $productPrice];
-        $cart[] = $product;
+        if($order == null)
+        {
+            $order = new Order;
+            $order->status = "In Cart";
+            $order->total_price = 0;
+            $order->save();
+        }
 
-        $request->session()->put('cart', $cart);
+        $item = new OrderdItem;
+
+        $item->order_id = $order->id;
+        $item->product_id = $product->id;
+        $item->quantity = 1;
+
+        $item->save();
 
         return redirect()->route('viewProduct');
     }
