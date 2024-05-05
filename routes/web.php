@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+Route::get('/addToCart/{id}', [App\Http\Controllers\ViewProductsController::class, 'addToCart'])->name('add-to-cart');
 
 Route::get('/addProducts', [App\Http\Controllers\ModifyProductsController::class, 'viewAddProduct'])->name('add-products')->middleware('auth');
 Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'viewModifyProduct'])->name('modify-products')->middleware('auth');
