@@ -94,7 +94,7 @@
                                 <label for="quantity" class="col-md-4 col-form-label text-md-end">{{ __('Quantity') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="quantity" type="int" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ $product->quantity }}" required>
+                                    <input id="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ $product->quantity }}" required>
 
                                     @error('quantity')
                                         <span class="invalid-feedback" role="alert">
