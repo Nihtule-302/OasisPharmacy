@@ -21,11 +21,17 @@ class CartController extends Controller
 
         $order = Order::where('user_id', $user_id)->first();
 
-        
-        $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
-            ->select('pharmaceutical_products.*', 'orderd_items.quantity')
-            ->where('orderd_items.order_id', $order->id)
-            ->get();
+        // Check if an order exists for the user
+        if ($order) {
+            $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
+                ->select('pharmaceutical_products.*', 'orderd_items.quantity')
+                ->where('orderd_items.order_id', $order->id)
+                ->get();
+        } else {
+            // If no order exists for the user, set items to an empty collection
+            $items = collect();
+        }
+
 
         return view('cart', compact('items', 'order'));
     }
