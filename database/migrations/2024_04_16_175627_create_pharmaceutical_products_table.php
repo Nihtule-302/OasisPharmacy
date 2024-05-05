@@ -20,6 +20,9 @@ class CreatePharmaceuticalProductsTable extends Migration
             $table->date("expiration_date");
             $table->float("price");
             $table->string("description", 500);
+            $table->integer("quantity");
+            $table->enum("status", ["Active", "Out Of Stock"])->default("Active");
+
             
             $table->timestamps();
         });
