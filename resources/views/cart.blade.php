@@ -47,7 +47,7 @@
                         <br>
 
                         <div class="col-md-6 offset-md-3">
-                          <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">
+                          <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4" href="{{route('edit-product', $product->id)}}">
                             Buy
                           </button>
                         </div>
