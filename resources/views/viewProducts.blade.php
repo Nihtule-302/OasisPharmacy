@@ -34,9 +34,21 @@
 
                                   @if(Auth::check())
                                     <td>
-                                      <a href="{{ route('add-to-cart', $product->id) }}">
-                                        add to cart
-                                      </a>&nbsp&nbsp&nbsp&nbsp
+                                      <input id="quantity_{{$product->id}}" type="range" name="quantity" min="0" max="{{$product->quantity}}" value="0">
+                                      <span id="quantityValue_{{$product->id}}">0</span>
+
+                                      <script>
+                                          document.getElementById('quantity_{{$product->id}}').addEventListener('input', function() {
+                                              document.getElementById('quantityValue_{{$product->id}}').innerText = this.value;
+                                          });
+                                      </script>
+
+
+                                        <form action="{{ route('add-to-cart', $product->id) }}" method="GET">
+                                          <button type="submit">Add to Cart</button>
+                                        </form>
+                                        &nbsp&nbsp&nbsp&nbsp
+
                                     </td>
                                   @endif
                                   

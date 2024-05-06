@@ -22,7 +22,7 @@ class CartController extends Controller
 
         if ($order && $order->status == 'In Cart') {
             $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
-                ->select('pharmaceutical_products.*', 'orderd_items.quantity')
+                ->select('pharmaceutical_products.*', 'orderd_items.*')
                 ->where('orderd_items.order_id', $order->id)
                 ->get();
             
@@ -68,6 +68,20 @@ class CartController extends Controller
         }
 
         return redirect(route('cart'));
+    }
+
+    public function removeFromCart($id)
+    {
+        $orderItem = OrderdItem::find($id);   
+       
+        if ($orderItem->quantity > 1) {
+            $orderItem->decrement('quantity');
+        } else {
+            
+            $orderItem->delete();
+        }
+   
+        return redirect()->route('cart');
     }
 
 }

@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart')->middleware('auth');
 Route::get('/buy/{id}', [App\Http\Controllers\CartController::class, 'buy'])->name('buy')->middleware('auth');
+Route::get('/removeFromCart/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('remove-from-cart')->middleware('auth');
 
 //route remove from cart Here
 Route::get('/addToCart/{id}', [App\Http\Controllers\ViewProductsController::class, 'addToCart'])->name('add-to-cart');

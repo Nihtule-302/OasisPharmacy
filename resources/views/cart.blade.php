@@ -30,7 +30,7 @@
 
                                   @if(Auth::check())
                                     <td>
-                                      <a href="{{ route('cart'/*, $item->product_id*/) }}">
+                                      <a href="{{ route('remove-from-cart', $item->id) }}">
                                          remove
                                       </a>&nbsp&nbsp&nbsp&nbsp
                                     </td>

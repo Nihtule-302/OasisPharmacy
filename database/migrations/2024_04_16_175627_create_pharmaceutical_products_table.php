@@ -21,7 +21,7 @@ class CreatePharmaceuticalProductsTable extends Migration
             $table->float("price");
             $table->string("description", 500);
             $table->integer("quantity");
-            $table->enum("status", ["Active", "Out Of Stock"])->default("Active");
+            $table->enum("status", ["In Stock", "Out Of Stock"])->default("In Stock");
 
             
             $table->timestamps();
