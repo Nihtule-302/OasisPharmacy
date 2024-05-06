@@ -44,13 +44,31 @@ class CartController extends Controller
                     ->where('status', 'In Cart')
                     ->first();
 
-        if ($order) {
+        // Check if order exists and its status is 'In Cart'
+        if ($order && $order->status === 'In Cart') {
+            // Finalize the order and set the order date
             $order->status = 'Finalized';
-            $order->order_date = Carbon::now(); // Use Carbon for date handling
+            $order->order_date = Carbon::now();
             $order->save();
+
+            // Retrieve items in the order
+            $items = OrderdItem::where('order_id', $order->id)->get();
+
+            // Check if items exist
+            if ($items->isNotEmpty()) {
+                foreach ($items as $item) {
+                    // Update product quantity
+                    $product = PharmaceuticalProduct::find($item->product_id);
+                    if ($product) {
+                        $product->quantity -= $item->quantity;
+                        $product->save();
+                    }
+                }
+            }
         }
 
         return redirect(route('cart'));
     }
+
 }
 

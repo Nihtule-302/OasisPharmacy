@@ -13,6 +13,8 @@ class PharmaceuticalProduct extends Model
         'expiration_date',
         'price',
         'description',
+        'quantity',
+        'status',
     ];
     use HasFactory;
 

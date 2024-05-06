@@ -48,11 +48,14 @@
 
                         @if($order)
                           <div class="col-md-6 offset-md-3">
-                            <a data-mdb-ripple-init class="btn btn-primary btn-block mb-4" href="{{ route('buy', $order->id) }}">
-                              Buy
-                            </a>
+                              <form action="{{ route('buy', $order->id) }}" method="GET">
+                                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                                      Buy
+                                  </button>
+                              </form>
                           </div>
                         @endif
+
                         
 
                     </div>
