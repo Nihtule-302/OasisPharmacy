@@ -30,9 +30,9 @@
 
                                   @if(Auth::check())
                                     <td>
-                                    <a href="{{ route('cart.destroy', $item->id) }}">
-    remove
-</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <a href="{{ route('cart'/*, $item->product_id*/) }}">
+                                         remove
+                                      </a>&nbsp&nbsp&nbsp&nbsp
                                     </td>
                                   @endif
                     
