@@ -15,22 +15,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('cart');
 });
-
-
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart')->middleware('auth');
-Route::get('/buy/{id}', [App\Http\Controllers\CartController::class, 'buy'])->name('buy')->middleware('auth');
-
-//route remove from cart Here
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 Route::get('/addToCart/{id}', [App\Http\Controllers\ViewProductsController::class, 'addToCart'])->name('add-to-cart');
-
-
 
 Route::get('/addProducts', [App\Http\Controllers\ModifyProductsController::class, 'viewAddProduct'])->name('add-products')->middleware('auth');
 Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::class, 'viewModifyProduct'])->name('modify-products')->middleware('auth');
