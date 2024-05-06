@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ViewProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = PharmaceuticalProduct::all();
@@ -23,14 +18,15 @@ class ViewProductsController extends Controller
 
     public function addToCart(Request $request, $id)
     {
-        // Find the product by its ID
         $product = PharmaceuticalProduct::find($id);
 
-        // Check if there's an existing order for the current user
-        $order = Order::where('user_id', Auth::user()->id)->first();
+        // Find the order for the current user with "In Cart" status
+        $order = Order::where('user_id', Auth::user()->id)
+                    ->where('status', 'In Cart')
+                    ->first();
 
         // If no order exists, create a new one
-        if ($order === null) {
+        if (!$order) {
             $order = new Order;
             $order->user_id = Auth::user()->id;
             $order->status = "In Cart";
@@ -40,11 +36,11 @@ class ViewProductsController extends Controller
 
         // Check if the product is already in the cart
         $item = OrderdItem::where('order_id', $order->id)
-                        ->where("product_id", $product->id)
+                        ->where('product_id', $product->id)
                         ->first();
 
         // If the product is not in the cart, add it as a new item
-        if ($item === null) {
+        if (!$item) {
             $item = new OrderdItem;
             $item->order_id = $order->id;
             $item->product_id = $product->id;
@@ -56,7 +52,8 @@ class ViewProductsController extends Controller
             $item->save();
         }
 
+        // Redirect the user to the view products page
         return redirect()->route('view-products');
     }
-
 }
+

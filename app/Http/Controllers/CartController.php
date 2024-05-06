@@ -8,105 +8,49 @@ use App\Models\PharmaceuticalProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $user_id = Auth::user()->id;
 
-        $order = Order::where('user_id', $user_id)->first();
+        $order = Order::where('user_id', $user_id)
+                    ->where('status', 'In Cart')
+                    ->first();
 
-        // Check if an order exists for the user
-        if ($order) {
+        if ($order && $order->status == 'In Cart') {
             $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
                 ->select('pharmaceutical_products.*', 'orderd_items.quantity')
                 ->where('orderd_items.order_id', $order->id)
                 ->get();
             
-            // Calculate the total cost
             $totalCost = $items->sum(function ($item) {
                 return $item->price * $item->quantity;
             });
-            
         } else {
-            // If no order exists for the user, set items to an empty collection
             $items = collect();
-            $totalCost = 0; // Set total cost to 0
+            $totalCost = 0;
         }
 
         return view('cart', compact('items', 'order', 'totalCost'));
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function buy()
     {
-        //
-    }
+        $user_id = Auth::user()->id;
+        $order = Order::where('user_id', $user_id)
+                    ->where('status', 'In Cart')
+                    ->first();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if ($order) {
+            $order->status = 'Finalized';
+            $order->order_date = Carbon::now(); // Use Carbon for date handling
+            $order->save();
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect(route('cart'));
     }
 }
+
