@@ -72,13 +72,15 @@ class CartController extends Controller
 
     public function removeFromCart($id)
     {
-        $orderItem = OrderdItem::find($id);   
+        $orderItem = OrderdItem::find($id);
+        
+        $order = Order::find($orderItem->order_id);
        
         if ($orderItem->quantity > 1) {
             $orderItem->decrement('quantity');
         } else {
             
-            $orderItem->delete();
+            $order->delete();
         }
    
         return redirect()->route('cart');

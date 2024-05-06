@@ -44,11 +44,11 @@ class ViewProductsController extends Controller
             $item = new OrderdItem;
             $item->order_id = $order->id;
             $item->product_id = $product->id;
-            $item->quantity = $request->input('quantity');
+            $item->quantity = $request->quantity;
             $item->save();
         } else {
             // If the product is already in the cart, increase its quantity
-            $item->quantity += 1;
+            $item->quantity += $request->quantity;
             $item->save();
         }
 
