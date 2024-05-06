@@ -46,11 +46,13 @@
                         <br>
                         <br>
 
-                        <div class="col-md-6 offset-md-3">
-                          <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">
-                            Buy
-                          </button>
-                        </div>
+                        @if($order)
+                          <div class="col-md-6 offset-md-3">
+                            <a data-mdb-ripple-init class="btn btn-primary btn-block mb-4" href="{{ route('buy', $order->id) }}">
+                              Buy
+                            </a>
+                          </div>
+                        @endif
                         
 
                     </div>
