@@ -31,12 +31,17 @@
                                   <td>{{$product->description}}</td>
                                   <td>{{$product->expiration_date}}</td>
                                   <td>{{$product->quantity}}</td>
+                                  @php $currentItem = null; @endphp
+                                  @foreach($items as $item)
+                                      @if($item->product_id == $product->id)
+                                          @php $currentItem = $item; @endphp
+                                      @endif
+                                  @endforeach
 
                                   @if(Auth::check())
                                     <td>
-                                      <form id="addToCartForm" action="{{ route('add-to-cart', $product->id) }}">
-                                          
-                                          <input id="quantity" type="number" name="quantity" min="1" max="{{ $product->quantity }}">
+                                      <form class="addToCartForm" action="{{ route('add-to-cart', $product->id) }}">
+                                          <input type="number" value="{{ $currentItem ? $currentItem->quantity : 0 }}" name="quantity" min="1" max="{{ $product->quantity }}">
                                           <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
                                       </form>
                                     </td>
@@ -49,8 +54,6 @@
                         
                         <a href="{{ route('cart') }}" class="view-cart-link">View Cart</a>
                       </div>
-
-
                   </div>
               </div>
           </div>

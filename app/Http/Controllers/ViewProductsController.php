@@ -13,7 +13,21 @@ class ViewProductsController extends Controller
     public function index()
     {
         $products = PharmaceuticalProduct::all();
-        return view('viewProducts', compact('products'));
+
+        $user_id = Auth::user()->id;
+
+        $order = Order::where('user_id', $user_id)
+                    ->where('status', 'In Cart')
+                    ->first();
+        
+        if($order){
+        $items = OrderdItem::where('order_id', $order->id)
+                    ->get();
+        } else {
+            $items = collect();
+        }
+
+        return view('viewProducts', compact('products',"items"));
     }
 
     public function addToCart(Request $request, $id)
@@ -48,7 +62,7 @@ class ViewProductsController extends Controller
             $item->save();
         } else {
             // If the product is already in the cart, increase its quantity
-            $item->quantity += $request->quantity;
+            $item->quantity = $request->quantity;
             $item->save();
         }
 
