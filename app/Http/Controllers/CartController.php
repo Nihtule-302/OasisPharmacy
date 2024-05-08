@@ -80,7 +80,7 @@ class CartController extends Controller
             $orderItem->decrement('quantity');
         } else {
             
-            $order->delete();
+            $orderItem->delete();
         }
    
         return redirect()->route('cart');
