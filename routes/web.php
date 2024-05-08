@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/audio', function () {
+    return view('music');
+})->name('audio.page');
+
 
 
 Auth::routes();
@@ -43,3 +47,4 @@ Route::post('/updateProduct/{id}', [App\Http\Controllers\ModifyProductsControlle
 Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');
 
 Route::get('/viewOrders', [App\Http\Controllers\OrderController::class, 'index'])->name('viewOrders')->middleware('auth');
+Route::post('/viewOrderDetails/{orderId}', [App\Http\Controllers\OrderController::class, 'viewOrderDetails'])->name('view-order-details')->middleware('auth');

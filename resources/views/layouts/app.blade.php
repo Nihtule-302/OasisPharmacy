@@ -43,6 +43,17 @@
                   </span>
                 </a>
 
+                <audio controls id="audioPlayer">
+                  <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+
+                <script>
+                  // JavaScript code to control the audio player
+                  var audioPlayer = document.getElementById('audioPlayer');
+                  // You can add additional JavaScript code to control the audio player here
+                </script>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,37 +74,40 @@
                       <a class="nav-link" href="{{ route('view-products') }}"> Products </a>
                     </li>
 
+                    @auth
+                      @if(Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('viewOrders') }}"> View Orders </a>
+                        </li>
 
-                    @if(Auth::check() && Auth::user()->role == 'admin')
-                      <li class="nav-item dropdown">
-                        <a
-                          data-mdb-dropdown-init
-                          class="nav-link dropdown-toggle"
-                          href="#"
-                          id="navbarDropdownMenuLink"
-                          role="button"
-                          aria-expanded="false"
-                        >
-                          Product Managment 
-                        </a>
+                        <li class="nav-item dropdown">
+                          <a
+                            data-mdb-dropdown-init
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            aria-expanded="false"
+                          >
+                            Product Managment 
+                          </a>
 
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <li>
-                            <a class="dropdown-item" href="{{ route('add-products') }}">Add Product</a>
-                          </li>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                              <a class="dropdown-item" href="{{ route('add-products') }}">Add Product</a>
+                            </li>
 
-                          <li>
-                            <a class="dropdown-item" href="{{ route('modify-products') }}">Modify Products</a>
-                          </li>
-                          
-                        </ul>
+                            <li>
+                              <a class="dropdown-item" href="{{ route('modify-products') }}">Modify Products</a>
+                            </li>
+                            
+                          </ul>
 
-                      </li>
+                        </li>
 
-                      <li class="nav-item">
-                      <a class="nav-link" href="{{ route('viewOrders') }}"> View Orders </a>
-                    </li>
-                    @endif
+                        
+                      @endif
+                    @endauth  
 
 
                     <li class="nav-item">
