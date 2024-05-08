@@ -43,7 +43,7 @@
                         <br>
                         <br>
 
-                        @if($order)
+                        @if(!$items->isEmpty())
                           <div class="col-md-6 offset-md-3">
                               <form action="{{ route('buy', $order->id) }}" method="GET">
                                   <button type="submit" class="btn btn-primary btn-block mb-4">
@@ -52,9 +52,6 @@
                               </form>
                           </div>
                         @endif
-
-                        
-
                     </div>
                 </div>
             </div>

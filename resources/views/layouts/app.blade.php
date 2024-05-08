@@ -117,7 +117,6 @@
                                             <a
                                                 data-mdb-dropdown-init
                                                 class="nav-link dropdown-toggle"
-
                                                 id="navbarDropdownMenuLink"
                                                 role="button"
                                                 aria-expanded="false"
@@ -125,9 +124,6 @@
                                                 {{ Auth::user()->name }}
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Change Password</a>
-                                                </li>
                                                 <li>
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
@@ -167,7 +163,7 @@
 
     <!-- JavaScript for AJAX navigation -->
     <script>
-        $(document).on('click', 'a.nav-link', function(event) {
+        $(document).on('click', 'a', function(event) {
             event.preventDefault(); // Prevent default link behavior
             var url = $(this).attr('href'); // Get the URL from the link
             $('#app').load(url + ' #app'); // Load content from the URL and replace app container
