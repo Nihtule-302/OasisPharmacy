@@ -45,18 +45,24 @@ class CartController extends Controller
                     ->first();
 
         // Check if order exists and its status is 'In Cart'
-        if ($order && $order->status === 'In Cart') {
+        if ($order) {
             // Finalize the order and set the order date
-            $order->status = 'Finalized';
-            $order->order_date = Carbon::now();
-            $order->save();
+            
 
             // Retrieve items in the order
-            $items = OrderdItem::where('order_id', $order->id)->get();
+            $items = PharmaceuticalProduct::join('orderd_items', 'pharmaceutical_products.id', '=', 'orderd_items.product_id')
+                ->select('pharmaceutical_products.*', 'orderd_items.*')
+                ->where('orderd_items.order_id', $order->id)
+                ->get();
+
+            $totalPrice = 0;
 
             // Check if items exist
             if ($items->isNotEmpty()) {
                 foreach ($items as $item) {
+
+                    $totalPrice += $item->price * $item->quantity;
+
                     // Update product quantity
                     $product = PharmaceuticalProduct::find($item->product_id);
                     if ($product) {
@@ -64,6 +70,12 @@ class CartController extends Controller
                         $product->save();
                     }
                 }
+
+                $order->status = 'Finalized';
+                $order->order_date = Carbon::now();
+
+                $order->total_price = $totalPrice;
+                $order->save();
             }
         }
 
