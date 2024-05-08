@@ -29,7 +29,7 @@ Route::get('/buy/{id}', [App\Http\Controllers\CartController::class, 'buy'])->na
 Route::get('/removeFromCart/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('remove-from-cart')->middleware('auth');
 
 //route remove from cart Here
-Route::get('/addToCart/{id}', [App\Http\Controllers\ViewProductsController::class, 'addToCart'])->name('add-to-cart');
+Route::post('/addToCart/{id}', [App\Http\Controllers\ViewProductsController::class, 'addToCart'])->name('add-to-cart');
 
 
 

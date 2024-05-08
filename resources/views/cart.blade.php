@@ -27,15 +27,12 @@
                                   <td>{{$item->price}}</td>
                                   <td>{{$item->quantity}}</td>
                                   
-
-                                  @if(Auth::check())
-                                    <td>
-                                      <a href="{{ route('remove-from-cart', $item->id) }}">
-                                         remove
-                                      </a>&nbsp&nbsp&nbsp&nbsp
-                                    </td>
-                                  @endif
-                    
+                                  <td>
+                                    <a href="{{ route('remove-from-cart', $item->id) }}">
+                                        remove
+                                    </a>&nbsp&nbsp&nbsp&nbsp
+                                  </td>
+                                  
                                 </tr>
                               @endforeach
                             </tbody>

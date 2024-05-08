@@ -24,15 +24,15 @@
                                     <th></th> <!-- Placeholder header for edit/delete -->
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody> 
                                 @foreach($products as $product)
-                                <tr class="{{ Auth::check() && Auth::user()->role == 'admin' ? 'auth-visible' : '' }}">
+                                <tr>
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->expiration_date}}</td>
                                     <td>{{$product->quantity}}</td>
-                                    <td class="edit-delete-cell">
+                                    <td>
                                         <a href="{{route('edit-product', $product->id)}}">edit</a>
                                         &nbsp; &nbsp; &nbsp;
                                         <a href="{{route('delete-product', $product->id)}}" onclick="return confirm('Are you sure?')">delete</a>

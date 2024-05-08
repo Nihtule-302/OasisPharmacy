@@ -25,29 +25,28 @@
 
                             <tbody>
                               @foreach($products as $product)
-                                <tr>
-                                  <td>{{$product->product_name}}</td>
-                                  <td>{{$product->price}}</td>
-                                  <td>{{$product->description}}</td>
-                                  <td>{{$product->expiration_date}}</td>
-                                  <td>{{$product->quantity}}</td>
-                                  @php $currentItem = null; @endphp
-                                  @foreach($items as $item)
-                                      @if($item->product_id == $product->id)
-                                          @php $currentItem = $item; @endphp
-                                      @endif
-                                  @endforeach
+                                  <tr>
+                                      <td>{{$product->product_name}}</td>
+                                      <td>{{$product->price}}</td>
+                                      <td>{{$product->description}}</td>
+                                      <td>{{$product->expiration_date}}</td>
+                                      <td>{{$product->quantity}}</td>
+                                      
+                                      @php 
+                                          $currentItem = $items->firstWhere('product_id', $product->id); 
+                                          $quantityInCart = $currentItem ? $currentItem->quantity : 0;
+                                      @endphp
 
-                                  @if(Auth::check())
-                                    <td>
-                                      <form action="{{ route('add-to-cart', $product->id) }}">
-                                          <input type="number" value="{{ $currentItem->quantity ?? 0 }}" name="quantity" min="1" max="{{ $product->quantity }}">
-                                          <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
-                                      </form>
-                                    </td>
-                                  @endif
-                                  
-                                </tr>
+                                      @auth
+                                          <td>
+                                              <form action="{{ route('add-to-cart', $product->id) }}" method="POST">
+                                                  @csrf
+                                                  <input type="number" value="{{ $quantityInCart }}" name="quantity" min="1" max="{{ $product->quantity }}">
+                                                  <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
+                                              </form>
+                                          </td>
+                                      @endauth
+                                  </tr>
                               @endforeach
                             </tbody>
                         </table>

@@ -24,7 +24,7 @@ class ViewProductsController extends Controller
                         ->first();
 
             if ($order) {
-                $items = OrderedItem::where('order_id', $order->id)->get();
+                $items = OrderdItem::where('order_id', $order->id)->get();
             }
         }
 
