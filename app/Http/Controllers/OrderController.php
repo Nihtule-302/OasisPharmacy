@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\OrderdItem;
+use App\Models\User;
 class OrderController extends Controller
 {
     /**
@@ -17,9 +17,9 @@ class OrderController extends Controller
     $orders = Order::where('status', 'Finalized')->get();
 
     if ($orders->isNotEmpty()) {
-        $joinOrders = OrderdItem::join('orders', 'users.id', '=', 'orders.user_id')
+        $joinOrders = User::join('orders', 'users.id', '=', 'orders.user_id')
             ->join('orderd_items', 'orders.id', '=', 'orderd_items.order_id')
-            ->select('users.*', 'orderd_items.*', 'orders.*')
+            ->select('users.*', 'orders.*', 'orderd_items.*')
             ->get();
 
     } else {
