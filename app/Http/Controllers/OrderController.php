@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Order;
+use App\Models\OrderdItem;
 class OrderController extends Controller
 {
     /**
@@ -12,9 +13,21 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+{
+    $orders = Order::where('status', 'Finalized')->get();
+
+    if ($orders->isNotEmpty()) {
+        $joinOrders = OrderdItem::join('orders', 'users.id', '=', 'orders.user_id')
+            ->join('orderd_items', 'orders.id', '=', 'orderd_items.order_id')
+            ->select('users.*', 'orderd_items.*', 'orders.*')
+            ->get();
+
+    } else {
+        $joinOrders = collect();
     }
+    return view('viewOrders', compact('orders', 'joinOrders'));
+
+}
 
     /**
      * Show the form for creating a new resource.

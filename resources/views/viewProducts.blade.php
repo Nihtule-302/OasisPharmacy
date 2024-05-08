@@ -31,24 +31,19 @@
                                   <td>{{$product->description}}</td>
                                   <td>{{$product->expiration_date}}</td>
                                   <td>{{$product->quantity}}</td>
+                                  @php $currentItem = null; @endphp
+                                  @foreach($items as $item)
+                                      @if($item->product_id == $product->id)
+                                          @php $currentItem = $item; @endphp
+                                      @endif
+                                  @endforeach
 
                                   @if(Auth::check())
                                     <td>
-                                      <input id="quantity_{{$product->id}}" type="range" name="quantity" min="0" max="{{$product->quantity}}" value="0">
-                                      <span id="quantityValue_{{$product->id}}">0</span>
-
-                                      <script>
-                                          document.getElementById('quantity_{{$product->id}}').addEventListener('input', function() {
-                                              document.getElementById('quantityValue_{{$product->id}}').innerText = this.value;
-                                          });
-                                      </script>
-
-
-                                        <form action="{{ route('add-to-cart', $product->id) }}" method="GET">
-                                          <button type="submit">Add to Cart</button>
-                                        </form>
-                                        &nbsp&nbsp&nbsp&nbsp
-
+                                      <form class="addToCartForm" action="{{ route('add-to-cart', $product->id) }}">
+                                          <input type="number" value="{{ $currentItem ? $currentItem->quantity : 0 }}" name="quantity" min="1" max="{{ $product->quantity }}">
+                                          <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
+                                      </form>
                                     </td>
                                   @endif
                                   
@@ -59,8 +54,6 @@
                         
                         <a href="{{ route('cart') }}" class="view-cart-link">View Cart</a>
                       </div>
-
-
                   </div>
               </div>
           </div>

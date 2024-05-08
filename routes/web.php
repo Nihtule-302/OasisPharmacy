@@ -41,3 +41,5 @@ Route::get('/editProduct/{id}', [App\Http\Controllers\ModifyProductsController::
 Route::post('/updateProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'update'])->name('update-product')->middleware('auth');
 
 Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');
+
+Route::get('/viewOrders', [App\Http\Controllers\OrderController::class, 'index'])->name('viewOrders')->middleware('auth');
