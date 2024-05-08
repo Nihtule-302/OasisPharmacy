@@ -45,7 +45,7 @@
 
                         @if(!$items->isEmpty())
                           <div class="col-md-6 offset-md-3">
-                              <form action="{{ route('buy', $order->id) }}" method="GET">
+                              <form id="buyForm" action="{{ route('buy', $order->id) }}" method="GET">
                                   <button type="submit" class="btn btn-primary btn-block mb-4">
                                       Buy
                                   </button>
@@ -58,4 +58,7 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection

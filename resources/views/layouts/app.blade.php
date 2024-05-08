@@ -39,7 +39,7 @@
                         </span>
                     </a>
 
-                    <audio controls id="audioPlayer">
+                    <audio id="audioPlayer" controls  autoplay>
                         <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -166,8 +166,39 @@
         $(document).on('click', 'a', function(event) {
             event.preventDefault(); // Prevent default link behavior
             var url = $(this).attr('href'); // Get the URL from the link
-            $('#app').load(url + ' #app'); // Load content from the URL and replace app container
+            $('#app').load(url + ' #app', function() {
+                history.pushState(null, '', url); // Update the URL in the address bar
+            });
         });
+
+        // JavaScript code to control the audio player
+        var audioPlayer = document.getElementById('audioPlayer');
+        // Play the audio automatically when the page loads
+        window.addEventListener('load', function() {
+            audioPlayer.play();
+        });
+
+        // Store the current audio player state in local storage before the page is unloaded
+        window.addEventListener('beforeunload', function() {
+            localStorage.setItem('audioPlayerState', JSON.stringify({
+                currentTime: audioPlayer.currentTime,
+                paused: audioPlayer.paused
+            }));
+        });
+
+        // Restore the audio player state after the page is loaded
+        window.addEventListener('load', function() {
+            var audioPlayerState = localStorage.getItem('audioPlayerState');
+            if (audioPlayerState) {
+                audioPlayerState = JSON.parse(audioPlayerState);
+                audioPlayer.currentTime = audioPlayerState.currentTime;
+                if (!audioPlayerState.paused) {
+                    audioPlayer.play();
+                }
+            }
+        });
+
     </script>
+
 </body>
 </html>
