@@ -26,11 +26,11 @@
                             <tbody>
                               @foreach($joinOrders as $item)
                                 <tr>
-                                  <td>{{ optional($item->order)->id }}</td>
-                                  <td>{{ optional($item->user)->role }}</td>
-                                  <td>{{ optional($item->user)->name }}</td>
-                                  <td>{{ optional($item->order)->total_price }}</td>
-                                  <td>{{ optional($item->order)->order_date }}</td>
+                                  <td>{{ $item->order_id}}</td>
+                                  <td>{{ $item->role }}</td>
+                                  <td>{{ $item->name }}</td>
+                                  <td>{{ $item->total_price }}</td>
+                                  <td>{{ $item->order_date }}</td>
                                 </tr>
                               @endforeach
                             </tbody>
