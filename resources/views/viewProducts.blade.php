@@ -40,8 +40,8 @@
 
                                   @if(Auth::check())
                                     <td>
-                                      <form class="addToCartForm" action="{{ route('add-to-cart', $product->id) }}">
-                                          <input type="number" value="{{ $currentItem ? $currentItem->quantity : 0 }}" name="quantity" min="1" max="{{ $product->quantity }}">
+                                      <form action="{{ route('add-to-cart', $product->id) }}">
+                                          <input type="number" value="{{ $currentItem->quantity ?? 0 }}" name="quantity" min="1" max="{{ $product->quantity }}">
                                           <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
                                       </form>
                                     </td>

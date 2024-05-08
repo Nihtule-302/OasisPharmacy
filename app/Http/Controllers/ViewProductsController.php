@@ -14,17 +14,18 @@ class ViewProductsController extends Controller
     {
         $products = PharmaceuticalProduct::all();
 
-        $user_id = Auth::user()->id;
+        $items = collect();
 
-        $order = Order::where('user_id', $user_id)
-                    ->where('status', 'In Cart')
-                    ->first();
-        
-        if($order){
-        $items = OrderdItem::where('order_id', $order->id)
-                    ->get();
-        } else {
-            $items = collect();
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+
+            $order = Order::where('user_id', $user_id)
+                        ->where('status', 'In Cart')
+                        ->first();
+
+            if ($order) {
+                $items = OrderedItem::where('order_id', $order->id)->get();
+            }
         }
 
         return view('viewProducts', compact('products',"items"));
