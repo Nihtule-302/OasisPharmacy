@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid p-0 overflow-hidden">
-    <div class="bg-image"">
+    <div class="bg-image">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card bg-transparent border-0 shadow-lg">
@@ -11,6 +11,17 @@
                     </div>
 
                     <div class="card-body bg-white-opacity">
+                        @if (session('success'))
+                          <div class="alert alert-success">
+                              {{ session('success') }}
+                          </div>
+                        @endif
+                        @if (session('error'))
+                          <div class="alert alert-danger">
+                              {{ session('error') }}
+                          </div>
+                        @endif
+
                         <table>
                             <thead>
                               <tr>
@@ -30,15 +41,13 @@
                                   <td>
                                     <a href="{{ route('remove-from-cart', $item->id) }}">
                                         remove
-                                    </a>&nbsp&nbsp&nbsp&nbsp
+                                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
                                   </td>
-                                  
                                 </tr>
                               @endforeach
                             </tbody>
                         </table>
                         Total Price = {{$totalCost}}
-                          
                         
                         <br>
                         <br>
@@ -58,7 +67,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
