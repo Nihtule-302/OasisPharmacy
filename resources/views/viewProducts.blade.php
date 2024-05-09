@@ -11,6 +11,12 @@
                       </div>
 
                       <div class="card-body bg-white-opacity">
+                        @if (session('success'))
+                          <div class="alert alert-success">
+                              {{ session('success') }}
+                          </div>
+                        @endif
+
                         <table>
                             <thead>
                               <tr>
