@@ -107,6 +107,8 @@ class ModifyProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //shady
     public function update(Request $request, $id)
     {
         $product = PharmaceuticalProduct::find($id);
@@ -118,6 +120,7 @@ class ModifyProductsController extends Controller
         $product->quantity = $request->quantity;
 
         $product->save();
+        
         return redirect(route('modify-products'));
     }
 

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<!--Saif did all the divs-->
 <div class="container-fluid p-0 overflow-hidden">
     <div class="bg-image"">
         <div class="row justify-content-center">
@@ -13,15 +14,6 @@
 
                     <div class="card-body bg-white-opacity">
                         <h3 class="card-title">Edit Product</h3>
-
-                        @if (session('successMsg'))
-                            <div class="alert alert-success" role="alert"align="center">
-                                <font size=5 face="Droid Arabic Kufi">
-                                    {{ session('successMsg') }}
-                                </font>
-                            </div>
-                            <br>
-                        @endif
 
                         <form method="POST" action="{{ route('update-product',$product->id) }}" >
                             @csrf
