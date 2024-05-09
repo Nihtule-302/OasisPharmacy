@@ -42,6 +42,8 @@ Route::get('/modifyProducts', [App\Http\Controllers\ModifyProductsController::cl
 Route::post('/saveProduct', [App\Http\Controllers\ModifyProductsController::class, 'store'])->name('save-product')->middleware('auth');
 Route::get('/deleteProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'destroy'])->name('delete-product')->middleware('auth');
 Route::get('/editProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'edit'])->name('edit-product')->middleware('auth');
+
+//Shady
 Route::post('/updateProduct/{id}', [App\Http\Controllers\ModifyProductsController::class, 'update'])->name('update-product')->middleware('auth');
 
 Route::get('/viewProducts', [App\Http\Controllers\ViewProductsController::class, 'index'])->name('view-products');
