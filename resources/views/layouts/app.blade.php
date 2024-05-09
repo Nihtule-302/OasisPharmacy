@@ -27,6 +27,11 @@
 </head>
 
 <body class="sub_page">
+    <audio id="audioPlayer" controls autoplay preload="auto" loop>
+        <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="toggleButton">Toggle Music</button>
     <div class="header">
         <!-- header section strats -->
         <header class="header_section">
@@ -39,10 +44,7 @@
                         </span>
                     </a>
 
-                    <audio id="audioPlayer" controls  autoplay>
-                        <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+                    
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -171,10 +173,8 @@
             });
         });
 
-        // JavaScript code to control the audio player
-        var audioPlayer = document.getElementById('audioPlayer');
-        // Play the audio automatically when the page loads
         window.addEventListener('load', function() {
+            var audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.play();
         });
 
@@ -192,12 +192,31 @@
             if (audioPlayerState) {
                 audioPlayerState = JSON.parse(audioPlayerState);
                 audioPlayer.currentTime = audioPlayerState.currentTime;
-                if (!audioPlayerState.paused) {
-                    audioPlayer.play();
-                }
+                
             }
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var toggleButton = document.getElementById('toggleButton');
+        
+        // Function to toggle the audio playback
+        function toggleAudio() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                toggleButton.textContent = 'Pause Music';
+            } else {
+                audioPlayer.pause();
+                toggleButton.textContent = 'Play Music';
+            }
+        }
+
+        // Event listener for the toggle button click
+        toggleButton.addEventListener('click', function() {
+            toggleAudio();
+        });
+    });
+    
     </script>
 
 </body>

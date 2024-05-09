@@ -39,7 +39,11 @@
                             </tbody>
                         </table>
 
-                        Item Count : {{count($itemAndProductRecords)}}<br>
+                        Item Count : {{
+                                        $itemAndProductRecords->sum(function ($item) {
+                                                return $item->orderd_quantity;
+                                            })
+                                    }}<br>
                         Total Price : {{$userAndOrderRecord->total_price}}<br>
                     </div>
                 </div>
