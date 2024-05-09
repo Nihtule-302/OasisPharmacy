@@ -173,6 +173,21 @@
             });
         });
 
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                // Page is hidden, pause the music
+                $('#audioPlayer')[0].pause();
+            } else {
+                // Page is visible, play the music if it was playing before
+                if (($('#audioPlayer')[0].paused)) {
+                    $('#audioPlayer')[0].play();
+                }
+            }
+        }
+
+// Add event listener for visibility change
+document.addEventListener('visibilitychange', handleVisibilityChange, false);
+
         window.addEventListener('load', function() {
             var audioPlayer = document.getElementById('audioPlayer');
             audioPlayer.play();
