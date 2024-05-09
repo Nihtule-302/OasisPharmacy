@@ -11,12 +11,6 @@
                       </div>
 
                       <div class="card-body bg-white-opacity">
-                        @if (session('success'))
-                          <div class="alert alert-success">
-                              {{ session('success') }}
-                          </div>
-                        @endif
-
                         <table>
                             <thead>
                               <tr>
@@ -60,7 +54,15 @@
                               @endforeach
                             </tbody>
                         </table>
-                        
+
+                        <div id="flash-message" class="modal-message">
+                            @if (session('success'))
+                              <p>{{ session('success') }}</p>
+                            @endif
+                        </div>
+
+                        <br>
+
                         <a href="{{ route('cart') }}" class="view-cart-link">View Cart</a>
                       </div>
                   </div>
@@ -68,4 +70,33 @@
           </div>
       </div>
    </div>
+
+   <!-- Add some styles for the modal -->
+   <style>
+      .modal-message {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          border: 1px solid #ddd;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          z-index: 1000;
+          display: none;
+      }
+   </style>
+
+   <!-- Add the JavaScript to hide the modal after a few seconds -->
+   <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var flashMessage = document.getElementById('flash-message');
+          if (flashMessage.querySelector('p')) {
+              flashMessage.style.display = 'block';
+              setTimeout(function() {
+                  flashMessage.style.display = 'none';
+              }, 3000); // 3 seconds
+          }
+      });
+   </script>
 @endsection

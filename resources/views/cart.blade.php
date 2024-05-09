@@ -11,24 +11,13 @@
                     </div>
 
                     <div class="card-body bg-white-opacity">
-                        @if (session('success'))
-                          <div class="alert alert-success">
-                              {{ session('success') }}
-                          </div>
-                        @endif
-                        @if (session('error'))
-                          <div class="alert alert-danger">
-                              {{ session('error') }}
-                          </div>
-                        @endif
-
                         <table>
                             <thead>
                               <tr>
                                 <th>Product Name</th>
                                 <th>Price</th>
-                                <th>Quantity</th> 
-                                <th></th> 
+                                <th>Quantity</th>
+                                <th></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -37,7 +26,7 @@
                                   <td>{{$item->product_name}}</td>
                                   <td>{{$item->price}}</td>
                                   <td>{{$item->quantity}}</td>
-                                  
+
                                   <td>
                                     <a href="{{ route('remove-from-cart', $item->id) }}">
                                         remove
@@ -48,7 +37,21 @@
                             </tbody>
                         </table>
                         Total Price = {{$totalCost}}
-                        
+
+                        <br>
+                        <br>
+
+                        @if (session('success'))
+                          <div id="flash-message" class="modal-message">
+                              <p>{{ session('success') }}</p>
+                          </div>
+                        @endif
+                        @if (session('error'))
+                          <div id="flash-message" class="modal-message">
+                              <p>{{ session('error') }}</p>
+                          </div>
+                        @endif
+
                         <br>
                         <br>
 
@@ -67,4 +70,35 @@
         </div>
     </div>
 </div>
+
+<!-- Add some styles for the modal -->
+<style>
+    .modal-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        z-index: 1000;
+        display: none;
+    }
+</style>
+
+<!-- Add the JavaScript to hide the modal after a few seconds -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var flashMessage = document.querySelectorAll('#flash-message');
+        flashMessage.forEach(function(message) {
+            if (message.querySelector('p')) {
+                message.style.display = 'block';
+                setTimeout(function() {
+                    message.style.display = 'none';
+                }, 3000); // 3 seconds
+            }
+        });
+    });
+</script>
 @endsection
