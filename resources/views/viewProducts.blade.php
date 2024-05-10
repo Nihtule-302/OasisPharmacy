@@ -42,7 +42,7 @@
                                               @if ($product->quantity == 0)
                                                   <span style="color: red;">Out of Stock</span>
                                               @else
-                                                  <form action="{{ route('add-to-cart', $product->id) }}" method="POST">
+                                                  <form id="addToCartForm" action="{{ route('add-to-cart', $product->id) }}" method="POST">
                                                       @csrf
                                                       <input type="number" value="{{ $quantityInCart }}" name="quantity" min="1" max="{{ $product->quantity }}">
                                                       <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
@@ -98,5 +98,48 @@
               }, 3000); // 3 seconds
           }
       });
+
+      // Function to fetch products data via AJAX
+      function fetchProducts() {
+            $.ajax({
+                url: '{{ route("view-products") }}', // Adjust the URL as per your route configuration
+                type: 'GET',
+                success: function(response) {
+                    // Update the container with the fetched HTML
+                    $('#products-container').html(response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        }
+
+     // Intercept form submission
+     $('#addToCartForm').submit(function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Extract form data
+            var formData = $(this).serialize();
+
+            // Send AJAX request
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                success: function(response) {
+                    // Handle success response if needed
+                    console.log(response);
+                    // Update the product container after adding to cart
+                    fetchProducts();
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        });
+
    </script>
 @endsection

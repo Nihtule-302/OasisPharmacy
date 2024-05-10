@@ -27,11 +27,16 @@
 </head>
 
 <body class="sub_page">
+
+    <!-- remove this to get rid of music -->
     <audio id="audioPlayer" controls autoplay preload="auto" loop>
         <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
     <button id="toggleButton">Toggle Music</button>
+    <!-- -->
+    
     <div class="header">
         <!-- header section strats -->
         <header class="header_section">
