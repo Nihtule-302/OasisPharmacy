@@ -169,75 +169,108 @@
     <script type="text/javascript" src="{{ asset('styleTemplate/js/custom.js') }}"></script>
 
     <script>
-        // Define audioPlayer globally
-        var audioPlayer = document.getElementById('audioPlayer');
-    
-        // Function to toggle the audio playback
-        function toggleAudio() {
+    // Define audioPlayer globally
+    var audioPlayer = document.getElementById('audioPlayer');
+
+    // Function to toggle the audio playback
+    function toggleAudio() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            toggleButton.textContent = 'Pause Music';
+        } else {
+            audioPlayer.pause();
+            toggleButton.textContent = 'Play Music';
+        }
+    }
+
+    // Event listener for the toggle button click
+    $('#toggleButton').click(function() {
+        toggleAudio();
+    });
+
+    // Event listener for AJAX navigation
+    $(document).on('click', 'a', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        var url = $(this).attr('href'); // Get the URL from the link
+        $('#app').load(url + ' #app', function() {
+            history.pushState(null, '', url); // Update the URL in the address bar
+        });
+    });
+
+    // Function to handle visibility change
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            // Page is hidden, pause the music
+            audioPlayer.pause();
+        } else {
+            // Page is visible, play the music if it was playing before
             if (audioPlayer.paused) {
                 audioPlayer.play();
-                toggleButton.textContent = 'Pause Music';
-            } else {
-                audioPlayer.pause();
-                toggleButton.textContent = 'Play Music';
             }
         }
-    
-        // Event listener for the toggle button click
-        $('#toggleButton').click(function() {
-            toggleAudio();
+    }
+
+    // Event listener for visibility change
+    document.addEventListener('visibilitychange', handleVisibilityChange, false);
+
+    // Event listener for page load
+    window.addEventListener('load', function() {
+        // Play the audio on page load
+        audioPlayer.play();
+
+        // Store the current audio player state in local storage before the page is unloaded
+        window.addEventListener('beforeunload', function() {
+            localStorage.setItem('audioPlayerState', JSON.stringify({
+                currentTime: audioPlayer.currentTime,
+                paused: audioPlayer.paused
+            }));
         });
-    
-        // Event listener for AJAX navigation
-        $(document).on('click', 'a', function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            var url = $(this).attr('href'); // Get the URL from the link
-            $('#app').load(url + ' #app', function() {
-                history.pushState(null, '', url); // Update the URL in the address bar
-            });
-        });
-    
-        // Function to handle visibility change
-        function handleVisibilityChange() {
-            if (document.hidden) {
-                // Page is hidden, pause the music
-                audioPlayer.pause();
-            } else {
-                // Page is visible, play the music if it was playing before
-                if (audioPlayer.paused) {
-                    audioPlayer.play();
-                }
+
+        // Restore the audio player state after the page is loaded
+        var audioPlayerState = localStorage.getItem('audioPlayerState');
+        if (audioPlayerState) {
+            audioPlayerState = JSON.parse(audioPlayerState);
+            audioPlayer.currentTime = audioPlayerState.currentTime;
+            if (!audioPlayerState.paused) {
+                audioPlayer.play();
             }
         }
+    });
+
     
-        // Event listener for visibility change
-        document.addEventListener('visibilitychange', handleVisibilityChange, false);
-    
-        // Event listener for page load
-        window.addEventListener('load', function() {
-            // Play the audio on page load
-            audioPlayer.play();
-    
-            // Store the current audio player state in local storage before the page is unloaded
-            window.addEventListener('beforeunload', function() {
-                localStorage.setItem('audioPlayerState', JSON.stringify({
-                    currentTime: audioPlayer.currentTime,
-                    paused: audioPlayer.paused
-                }));
-            });
-    
-            // Restore the audio player state after the page is loaded
-            var audioPlayerState = localStorage.getItem('audioPlayerState');
-            if (audioPlayerState) {
-                audioPlayerState = JSON.parse(audioPlayerState);
-                audioPlayer.currentTime = audioPlayerState.currentTime;
-                if (!audioPlayerState.paused) {
-                    audioPlayer.play();
-                }
+</script>
+
+<script>
+    // Event listener for AJAX form submission
+    $(document).on('submit', 'form.buyForm', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Get the form data
+        var formData = $(this).serialize();
+
+        // Get the form action URL
+        var url = $(this).attr('action');
+        var type = $(this).attr('method');
+
+        // Send an AJAX request
+        $.ajax({
+            url: url,
+            type: type,
+            data: formData,
+            success: function(response) {
+                // Handle successful form submission (e.g., update UI, play music)
+                console.log('Form submitted successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                // Handle form submission errors (e.g., display an error message)
+                console.error('Form submission failed:', error);
             }
         });
-    </script>
-    
+    });
+</script>
+
+
+
 
 </body>
 </html>
