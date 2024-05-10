@@ -20,6 +20,7 @@ class OrderController extends Controller
 
         if ($orders->isNotEmpty()) {
             $joinOrders = User::join('orders', 'users.id', '=', 'orders.user_id')
+                ->where('orders.status', 'Finalized')
                 ->select('users.*', 'orders.id as order_id' ,'orders.*')
                 ->get();
 
