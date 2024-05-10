@@ -36,7 +36,7 @@
 
     <button id="toggleButton">Toggle Music</button>
     <!-- -->
-    
+
     <div class="header">
         <!-- header section strats -->
         <header class="header_section">
@@ -168,58 +168,10 @@
     <script type="text/javascript" src="{{ asset('style/js/mdb.umd.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('styleTemplate/js/custom.js') }}"></script>
 
-    <!-- JavaScript for AJAX navigation -->
     <script>
-        $(document).on('click', 'a', function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            var url = $(this).attr('href'); // Get the URL from the link
-            $('#app').load(url + ' #app', function() {
-                history.pushState(null, '', url); // Update the URL in the address bar
-            });
-        });
-
-        function handleVisibilityChange() {
-            if (document.hidden) {
-                // Page is hidden, pause the music
-                $('#audioPlayer')[0].pause();
-            } else {
-                // Page is visible, play the music if it was playing before
-                if (($('#audioPlayer')[0].paused)) {
-                    $('#audioPlayer')[0].play();
-                }
-            }
-        }
-
-// Add event listener for visibility change
-document.addEventListener('visibilitychange', handleVisibilityChange, false);
-
-        window.addEventListener('load', function() {
-            var audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.play();
-        });
-
-        // Store the current audio player state in local storage before the page is unloaded
-        window.addEventListener('beforeunload', function() {
-            localStorage.setItem('audioPlayerState', JSON.stringify({
-                currentTime: audioPlayer.currentTime,
-                paused: audioPlayer.paused
-            }));
-        });
-
-        // Restore the audio player state after the page is loaded
-        window.addEventListener('load', function() {
-            var audioPlayerState = localStorage.getItem('audioPlayerState');
-            if (audioPlayerState) {
-                audioPlayerState = JSON.parse(audioPlayerState);
-                audioPlayer.currentTime = audioPlayerState.currentTime;
-                
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
+        // Define audioPlayer globally
         var audioPlayer = document.getElementById('audioPlayer');
-        var toggleButton = document.getElementById('toggleButton');
-        
+    
         // Function to toggle the audio playback
         function toggleAudio() {
             if (audioPlayer.paused) {
@@ -230,14 +182,62 @@ document.addEventListener('visibilitychange', handleVisibilityChange, false);
                 toggleButton.textContent = 'Play Music';
             }
         }
-
+    
         // Event listener for the toggle button click
-        toggleButton.addEventListener('click', function() {
+        $('#toggleButton').click(function() {
             toggleAudio();
         });
-    });
     
+        // Event listener for AJAX navigation
+        $(document).on('click', 'a', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            var url = $(this).attr('href'); // Get the URL from the link
+            $('#app').load(url + ' #app', function() {
+                history.pushState(null, '', url); // Update the URL in the address bar
+            });
+        });
+    
+        // Function to handle visibility change
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                // Page is hidden, pause the music
+                audioPlayer.pause();
+            } else {
+                // Page is visible, play the music if it was playing before
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                }
+            }
+        }
+    
+        // Event listener for visibility change
+        document.addEventListener('visibilitychange', handleVisibilityChange, false);
+    
+        // Event listener for page load
+        window.addEventListener('load', function() {
+            // Play the audio on page load
+            audioPlayer.play();
+    
+            // Store the current audio player state in local storage before the page is unloaded
+            window.addEventListener('beforeunload', function() {
+                localStorage.setItem('audioPlayerState', JSON.stringify({
+                    currentTime: audioPlayer.currentTime,
+                    paused: audioPlayer.paused
+                }));
+            });
+    
+            // Restore the audio player state after the page is loaded
+            var audioPlayerState = localStorage.getItem('audioPlayerState');
+            if (audioPlayerState) {
+                audioPlayerState = JSON.parse(audioPlayerState);
+                audioPlayer.currentTime = audioPlayerState.currentTime;
+                if (!audioPlayerState.paused) {
+                    audioPlayer.play();
+                }
+            }
+        });
     </script>
+    
 
 </body>
 </html>

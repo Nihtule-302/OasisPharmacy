@@ -42,7 +42,7 @@
                                               @if ($product->quantity == 0)
                                                   <span style="color: red;">Out of Stock</span>
                                               @else
-                                                  <form id="addToCartForm" action="{{ route('add-to-cart', $product->id) }}" method="POST">
+                                                  <form class ="addToCartForm" action="{{ route('add-to-cart', $product->id) }}" method="POST">
                                                       @csrf
                                                       <input type="number" value="{{ $quantityInCart }}" name="quantity" min="1" max="{{ $product->quantity }}">
                                                       <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
@@ -55,10 +55,8 @@
                             </tbody>
                         </table>
 
-                        <div id="flash-message" class="modal-message">
-                            @if (session('success'))
-                              <p>{{ session('success') }}</p>
-                            @endif
+                        <div id="successMessage">
+                              <p></p>
                         </div>
 
                         <br>
@@ -88,58 +86,59 @@
    </style>
 
    <!-- Add the JavaScript to hide the modal after a few seconds -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+
    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var flashMessage = document.getElementById('flash-message');
-          if (flashMessage.querySelector('p')) {
-              flashMessage.style.display = 'block';
-              setTimeout(function() {
-                  flashMessage.style.display = 'none';
-              }, 3000); // 3 seconds
-          }
-      });
+       $(document).ready(function() {
+           // Function to fetch products data via AJAX
+           function fetchProducts() {
+               $.ajax({
+                   url: '{{ route("view-products") }}', // Adjust the URL as per your route configuration
+                   type: 'GET',
+                   success: function(response) {
+                       // Update the container with the fetched HTML
+                       $('#products-container').html(response);
+                   },
+                   error: function(xhr, status, error) {
+                       // Handle errors
+                       console.error(error);
+                   }
+               });
+           }
+   
+           // Intercept form submission
+           $('.addToCartForm').submit(function(event) {
+               // Prevent default form submission
+               event.preventDefault();
+   
+               // Extract form data
+               var formData = $(this).serialize();
+   
+               // Send AJAX request
+               $.ajax({
+                   url: $(this).attr('action'),
+                   type: $(this).attr('method'),
+                   data: formData,
+                   success: function(response) {
+                        
+                        $('#successMessage').text("added to cart successfully");
 
-      // Function to fetch products data via AJAX
-      function fetchProducts() {
-            $.ajax({
-                url: '{{ route("view-products") }}', // Adjust the URL as per your route configuration
-                type: 'GET',
-                success: function(response) {
-                    // Update the container with the fetched HTML
-                    $('#products-container').html(response);
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.error(error);
-                }
-            });
-        }
-
-     // Intercept form submission
-     $('#addToCartForm').submit(function(event) {
-            // Prevent default form submission
-            event.preventDefault();
-
-            // Extract form data
-            var formData = $(this).serialize();
-
-            // Send AJAX request
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: formData,
-                success: function(response) {
-                    // Handle success response if needed
-                    console.log(response);
-                    // Update the product container after adding to cart
-                    fetchProducts();
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.error(error);
-                }
-            });
-        });
-
+                        setTimeout(function() {
+                            $('#successMessage').empty();
+                        }, 2000);
+                                
+                        fetchProducts();
+                    },
+                   error: function(xhr, status, error) {
+                       // Handle errors
+                       console.error(error);
+                   }
+               });
+           });
+   
+           // Call the fetchProducts function when the page loads
+           fetchProducts();
+       });
    </script>
+   
 @endsection
