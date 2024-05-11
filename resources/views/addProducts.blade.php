@@ -44,7 +44,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Price') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price">
+                                    <input id="price" type="number" step="any" class="form-control @error('price') is-invalid @enderror" name="price">
 
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">

@@ -208,40 +208,50 @@
     <script>
         // Define audioPlayer globally
         var audioPlayer = document.getElementById('audioPlayer');
+        var audioImage = document.getElementById('audioImage');
 
         // Function to toggle the audio playback
         function toggleAudio() {
-            var audioImage = document.getElementById('audioImage');
-
             if (audioPlayer.paused) {
                 audioImage.src = "originalStyle/img/music on icon.png";
-                audioImage.alt="Play Music";
+                audioImage.alt = "Play Music";
                 audioPlayer.play();
             } else {
                 audioImage.src = "originalStyle/img/music off icon.png";
-                audioImage.alt="Pause Music";
-                
+                audioImage.alt = "Pause Music";
                 audioPlayer.pause();
             }
         }
 
         function restartAudio() {
-            audioPlayer.currentTime=0;
+            audioPlayer.currentTime = 0;
         }
 
         // Event listener for the toggle button click
-        $('#toggleButton').click(function() {
+        $('#toggleButton').click(function () {
             toggleAudio();
         });
-        $('#restartButton').click(function() {
+
+        $('#restartButton').click(function () {
             restartAudio();
         });
 
+        // Event listener to change button image when audio is playing or paused
+        audioPlayer.addEventListener('play', function () {
+            audioImage.src = "originalStyle/img/music on icon.png";
+            audioImage.alt = "Playing Music";
+        });
+
+        audioPlayer.addEventListener('pause', function () {
+            audioImage.src = "originalStyle/img/music off icon.png";
+            audioImage.alt = "Paused Music";
+        });
+
         // Event listener for AJAX navigation
-        $(document).on('click', 'a', function(event) {
+        $(document).on('click', 'a', function (event) {
             event.preventDefault(); // Prevent default link behavior
             var url = $(this).attr('href'); // Get the URL from the link
-            $('#app').load(url + ' #app', function() {
+            $('#app').load(url + ' #app', function () {
                 history.pushState(null, '', url); // Update the URL in the address bar
             });
         });
@@ -263,12 +273,12 @@
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
 
         // Event listener for page load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Play the audio on page load
             audioPlayer.play();
 
             // Store the current audio player state in local storage before the page is unloaded
-            window.addEventListener('beforeunload', function() {
+            window.addEventListener('beforeunload', function () {
                 localStorage.setItem('audioPlayerState', JSON.stringify({
                     currentTime: audioPlayer.currentTime,
                     paused: audioPlayer.paused
@@ -281,12 +291,13 @@
                 audioPlayerState = JSON.parse(audioPlayerState);
                 audioPlayer.currentTime = audioPlayerState.currentTime;
                 if (!audioPlayerState.paused) {
+                    audioImage.src = "originalStyle/img/music on icon.png";
+                    audioImage.alt = "Play Music";
                     audioPlayer.play();
                 }
             }
         });
 
-    
     </script>
 
 
