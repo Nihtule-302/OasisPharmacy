@@ -23,7 +23,7 @@
                             <br>
                         @endif
 
-                        <form method="POST" action="{{ route('save-product') }}" >
+                        <form class = "addProductForm" method="POST" action="{{ route('save-product') }}" >
                             @csrf
 
                             <div class="row mb-3">

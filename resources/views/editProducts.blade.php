@@ -15,7 +15,7 @@
                     <div class="card-body bg-white-opacity">
                         <h3 class="card-title">Edit Product</h3>
 
-                        <form method="POST" action="{{ route('update-product',$product->id) }}" >
+                        <form class = "editForm" method="POST" action="{{ route('update-product',$product->id) }}" >
                             @csrf
 
                             <div class="row mb-3">

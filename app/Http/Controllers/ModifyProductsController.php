@@ -121,7 +121,7 @@ class ModifyProductsController extends Controller
 
         $product->save();
         
-        return redirect(route('modify-products'));
+        return route('modify-products');
     }
 
     /**

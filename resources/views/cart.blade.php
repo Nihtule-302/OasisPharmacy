@@ -57,7 +57,7 @@
 
                         @if(!$items->isEmpty())
                           <div class="col-md-6 offset-md-3">
-                              <form id="buyForm" action="{{ route('buy', $order->id) }}" method="GET">
+                              <form class="buyForm" action="{{ route('buy', $order->id) }}" method="GET">
                                   <button type="submit" class="btn btn-primary btn-block mb-4">
                                       Buy
                                   </button>
@@ -88,17 +88,5 @@
 </style>
 
 <!-- Add the JavaScript to hide the modal after a few seconds -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var flashMessage = document.querySelectorAll('#flash-message');
-        flashMessage.forEach(function(message) {
-            if (message.querySelector('p')) {
-                message.style.display = 'block';
-                setTimeout(function() {
-                    message.style.display = 'none';
-                }, 3000); // 3 seconds
-            }
-        });
-    });
-</script>
+
 @endsection

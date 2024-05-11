@@ -6,6 +6,19 @@ body{
     background-size: cover;
 }
 
+.modal-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
 .header{
     height: auto;
     background-color: rgba(186, 218, 236, 0.418);
@@ -64,3 +77,4 @@ tr:hover {
 .auth-visible .edit-delete-cell, .auth-visible .add-to-cart-cell {
     visibility: visible; /* Make visible based on authentication */
 }
+

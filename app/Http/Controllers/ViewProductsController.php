@@ -68,7 +68,7 @@ class ViewProductsController extends Controller
         }
         
         // Set success message and pass it directly to the redirect
-        return redirect()->route('view-products')->with('success', 'Item added to cart successfully!');
+        return route('view-products');
     }
 
     

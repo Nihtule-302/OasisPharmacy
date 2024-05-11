@@ -33,10 +33,7 @@
                                               <td>{{ $item->total_price }}</td>
                                               <td>{{ $item->order_date }}</td>
                                               <td>
-                                                  <form action="{{ route('view-order-details', $item->order_id) }}" method="POST">
-                                                      @csrf
-                                                      <button type="submit" style="border: none; background: none; color: blue;">View Order Details</button>
-                                                  </form>
+                                                    <a href="{{route('view-order-details', $item->order_id)}}">View Order Details</a>
                                               </td>
                                           </tr>
                                       @endforeach

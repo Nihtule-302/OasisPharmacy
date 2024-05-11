@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="card-body bg-white-opacity">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form class = "loginForm" method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">

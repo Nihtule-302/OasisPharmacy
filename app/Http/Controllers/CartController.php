@@ -79,7 +79,8 @@ class CartController extends Controller
             session()->flash('error', 'No active order found!');
         }
 
-        return redirect()->route('cart');
+        //return redirect()->route('cart');
+        return route('cart');
     }
 
     public function removeFromCart($id)

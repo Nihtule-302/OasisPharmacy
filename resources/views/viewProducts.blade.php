@@ -55,9 +55,11 @@
                             </tbody>
                         </table>
 
-                        <div id="successMessage">
-                              <p></p>
-                        </div>
+                        @if (session('success'))
+                          <div id="flash-message" class="modal-message">
+                              <p>{{ session('success')}}</p>
+                          </div>
+                        @endif
 
                         <br>
 
@@ -84,61 +86,5 @@
           display: none;
       }
    </style>
-
-   <!-- Add the JavaScript to hide the modal after a few seconds -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
-
-   <script>
-       $(document).ready(function() {
-           // Function to fetch products data via AJAX
-           function fetchProducts() {
-               $.ajax({
-                   url: '{{ route("view-products") }}', // Adjust the URL as per your route configuration
-                   type: 'GET',
-                   success: function(response) {
-                       // Update the container with the fetched HTML
-                       $('#products-container').html(response);
-                   },
-                   error: function(xhr, status, error) {
-                       // Handle errors
-                       console.error(error);
-                   }
-               });
-           }
-   
-           // Intercept form submission
-           $('.addToCartForm').submit(function(event) {
-               // Prevent default form submission
-               event.preventDefault();
-   
-               // Extract form data
-               var formData = $(this).serialize();
-   
-               // Send AJAX request
-               $.ajax({
-                   url: $(this).attr('action'),
-                   type: $(this).attr('method'),
-                   data: formData,
-                   success: function(response) {
-                        
-                        $('#successMessage').text("added to cart successfully");
-
-                        setTimeout(function() {
-                            $('#successMessage').empty();
-                        }, 2000);
-                                
-                        fetchProducts();
-                    },
-                   error: function(xhr, status, error) {
-                       // Handle errors
-                       console.error(error);
-                   }
-               });
-           });
-   
-           // Call the fetchProducts function when the page loads
-           fetchProducts();
-       });
-   </script>
    
 @endsection
