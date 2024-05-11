@@ -29,16 +29,18 @@
 <body class="sub_page">
 
     <!-- remove this to get rid of music -->
-    <audio id="audioPlayer" controls autoplay preload="auto" loop>
+    <audio id="audioPlayer" controls autoplay preload="auto" loop style= " display: none; ">
         <source src="{{ asset('originalStyle/music/Omar Faruk Tekbilek - Magic Of The Evening (OFFICIAL VIDEO).mp3') }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <button id="toggleButton">Toggle Music</button>
+    
     <!-- -->
 
 
     <div class="header">
+        <button id="toggleButton">Toggle Music</button>
+        <button id="restartButton">restart Music</button>
         <!-- header section strats -->
         <header class="header_section">
             <div class="container-fluid">
@@ -187,9 +189,16 @@
             }
         }
 
+        function restartAudio() {
+            audioPlayer.currentTime=0;
+        }
+
         // Event listener for the toggle button click
         $('#toggleButton').click(function() {
             toggleAudio();
+        });
+        $('#restartButton').click(function() {
+            restartAudio();
         });
 
         // Event listener for AJAX navigation
@@ -351,7 +360,28 @@
                 }
             });
         });
+        /*
+        $(document).on('submit', 'form.loginForm', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            var formData = $(this).serialize(); // Serialize form data
 
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                success: function(response) {
+                    var url = "{{route('home')}}"; // Get the URL from the link
+                    $('#app').load(url + ' #app', function() {
+                        history.pushState(null, '', url); // Update the URL in the address bar
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        });
+        */
         
     </script>
 

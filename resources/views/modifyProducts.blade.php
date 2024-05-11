@@ -35,7 +35,7 @@
                                     <td>
                                         <a href="{{route('edit-product', $product->id)}}">edit</a>
                                         &nbsp; &nbsp; &nbsp;
-                                        <a href="{{route('delete-product', $product->id)}}" onclick="return confirm('Are you sure?')">delete</a>
+                                        <!--<a href="//{{route('delete-product', $product->id)}}" onclick="return confirm('Are you sure?')">delete</a>-->
                                     </td>
                                 </tr>
                                 @endforeach
