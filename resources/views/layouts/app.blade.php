@@ -39,8 +39,39 @@
 
 
     <div class="header">
-        <button id="toggleButton">Toggle Music</button>
-        <button id="restartButton">restart Music</button>
+        <button id="toggleButton" class="button-with-image">
+            <img id="audioImage" src="originalStyle/img/music off icon.png" alt="Pause Music">
+        </button>
+        
+
+        <button id="restartButton">
+            <img src="image-url.jpg" alt="Image">
+            restart Music
+        </button>
+
+        <style>
+            .button-with-image {
+                background-color: transparent; /* Make the button transparent */
+                border: none; /* Remove any border */
+                padding: 0; /* Remove any padding */
+                position: relative; /* Ensure relative positioning for the button */
+                width: 40px; /* Set the width */
+                height: 40px; /* Set the height */
+            }
+
+            .button-with-image:focus {
+                outline: none;
+            }
+
+            .button-with-image img {
+                position: absolute; /* Position the image absolutely */
+                top: 0;
+                left: 0;
+                width: 100%; /* Make the image fill the button */
+                height: 100%;
+            }
+
+        </style>
         <!-- header section strats -->
         <header class="header_section">
             <div class="container-fluid">
@@ -63,7 +94,7 @@
                             <ul class="navbar-nav  ">
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-links" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                                 </li>
 
                                 <li class="nav-item">
@@ -181,12 +212,17 @@
 
         // Function to toggle the audio playback
         function toggleAudio() {
+            var audioImage = document.getElementById('audioImage');
+
             if (audioPlayer.paused) {
+                audioImage.src = "originalStyle/img/music on icon.png";
+                audioImage.alt="Play Music";
                 audioPlayer.play();
-                toggleButton.textContent = 'Pause Music';
             } else {
+                audioImage.src = "originalStyle/img/music off icon.png";
+                audioImage.alt="Pause Music";
+                
                 audioPlayer.pause();
-                toggleButton.textContent = 'Play Music';
             }
         }
 
