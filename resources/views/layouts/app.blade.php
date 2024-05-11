@@ -91,6 +91,7 @@
                                                 Product Managment
                                             </a>
 
+                                            <!--modify products -->
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                                 <li>
                                                     <a class="dropdown-item" href="{{ route('add-products') }}">Add Product</a>
