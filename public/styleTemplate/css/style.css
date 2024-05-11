@@ -97,7 +97,7 @@ body {
   margin: 0 auto;
 }
 
-.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-links {
   padding: 10px 30px;
   color: #ffffff;
   text-align: center;
@@ -163,7 +163,7 @@ a:focus {
 .navbar-brand span {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: #f2bb5a;
   font-family: "Ethnocentric";
 }
 

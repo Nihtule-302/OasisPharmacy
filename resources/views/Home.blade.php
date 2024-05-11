@@ -7,8 +7,8 @@
                 <div class="col-md-8">
                     <div class="card bg-transparent border-0 shadow-lg">
                         <div class="card-header bg-transparent border-0 text-white">
-                            <h2 class="mb-0">Welcome to Oasis Pharmacy</h2>
-                            <p class="mb-0">Your trusted source for quality medications and healthcare products.</p>
+                            <h2 class="mb-0" style="color: #ffffff">Welcome to Oasis Pharmacy</h2>
+                            <p class="mb-0" style="color: #ffffff">Your trusted source for quality medications and healthcare products.</p>
                         </div>
                         <div class="card-body bg-white-opacity">
                             <h3 class="card-title">About Us</h3>
