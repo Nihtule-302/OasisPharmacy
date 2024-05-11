@@ -44,9 +44,8 @@
         </button>
         
 
-        <button id="restartButton">
-            <img src="image-url.jpg" alt="Image">
-            restart Music
+        <button id="restartButton" class="button-with-image">
+            <img src="originalStyle\img\restart icon off.png" alt="Image">
         </button>
 
         <style>
