@@ -13,34 +13,38 @@
                     <div class="card-body bg-white-opacity">
                         
                         <h3 class="card-title">Modify Product</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Description</th>
-                                    <th>Expiration Date</th>
-                                    <th>Quantity</th>                                    
-                                    <th></th> <!-- Placeholder header for edit/delete -->
-                                </tr>
-                            </thead>
-                            <tbody> 
-                                @foreach($products as $product)
-                                <tr>
-                                    <td>{{$product->product_name}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->description}}</td>
-                                    <td>{{$product->expiration_date}}</td>
-                                    <td>{{$product->quantity}}</td>
-                                    <td>
-                                        <a href="{{route('edit-product', $product->id)}}">edit</a>
-                                        &nbsp; &nbsp; &nbsp;
-                                        <!--<a href="//{{route('delete-product', $product->id)}}" onclick="return confirm('Are you sure?')">delete</a>-->
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <span id="edit-message" style="color: blue; display: block; margin: 0 auto; width: fit-content; font-weight: bold;">
+                        </span>
+                        <div style="max-height: 500px; overflow-y: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>Expiration Date</th>
+                                        <th>Quantity</th>                                    
+                                        <th></th> <!-- Placeholder header for edit/delete -->
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    @foreach($products as $product)
+                                    <tr>
+                                        <td>{{$product->product_name}}</td>
+                                        <td>{{$product->price}}</td>
+                                        <td>{{$product->description}}</td>
+                                        <td>{{$product->expiration_date}}</td>
+                                        <td>{{$product->quantity}}</td>
+                                        <td>
+                                            <a href="{{route('edit-product', $product->id)}}">edit</a>
+                                            &nbsp; &nbsp; &nbsp;
+                                            <!--<a href="//{{route('delete-product', $product->id)}}" onclick="return confirm('Are you sure?')">delete</a>-->
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>      
                 </div>
             </div>

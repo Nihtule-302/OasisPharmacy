@@ -11,56 +11,53 @@
                       </div>
 
                       <div class="card-body bg-white-opacity">
-                        <table>
-                            <thead>
-                              <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Expiration Date</th>
-                                <th>Quantity</th>
-                                <th></th>
-                              </tr>
-                            </thead>
+                        <span id="add-to-cart-message" style="color: blue; display: block; margin: 0 auto; width: fit-content; font-weight: bold;">
+                        </span>
+                        <div style="max-height: 500px; overflow-y: auto;">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Expiration Date</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
 
-                            <tbody>
-                              @foreach($products as $product)
-                                  <tr>
-                                      <td>{{ $product->product_name }}</td>
-                                      <td>{{ $product->price }}</td>
-                                      <td>{{ $product->description }}</td>
-                                      <td>{{ $product->expiration_date }}</td>
-                                      <td>{{ $product->quantity }}</td>
-                                      
-                                      @php 
-                                          $currentItem = $items->firstWhere('product_id', $product->id); 
-                                          $quantityInCart = $currentItem ? $currentItem->quantity : 0;
-                                      @endphp
+                                <tbody>
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->description }}</td>
+                                        <td>{{ $product->expiration_date }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                        
+                                        @php 
+                                            $currentItem = $items->firstWhere('product_id', $product->id); 
+                                            $quantityInCart = $currentItem ? $currentItem->quantity : 0;
+                                        @endphp
 
-                                      @auth
-                                          <td>
-                                              @if ($product->quantity == 0)
-                                                  <span style="color: red;">Out of Stock</span>
-                                              @else
-                                                  <form class ="addToCartForm" action="{{ route('add-to-cart', $product->id) }}" method="POST">
-                                                      @csrf
-                                                      <input type="number" value="{{ $quantityInCart }}" name="quantity" min="1" max="{{ $product->quantity }}">
-                                                      <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
-                                                  </form>
-                                              @endif
-                                          </td>
-                                      @endauth
-                                  </tr>
-                              @endforeach
-                            </tbody>
-                        </table>
-
-                        @if (session('success'))
-                          <div id="flash-message" class="modal-message">
-                              <p>{{ session('success')}}</p>
-                          </div>
-                        @endif
-
+                                        @auth
+                                            <td>
+                                                @if ($product->quantity == 0)
+                                                    <span style="color: red;">Out of Stock</span>
+                                                @else
+                                                    <form class ="addToCartForm" action="{{ route('add-to-cart', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="number" value="{{ $quantityInCart }}" name="quantity" min="1" max="{{ $product->quantity }}">
+                                                        <button type="submit" style="border: none; background: none; color: blue;">Add to Cart</button>
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        @endauth
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         <br>
 
                         <a href="{{ route('cart') }}" class="view-cart-link">View Cart</a>

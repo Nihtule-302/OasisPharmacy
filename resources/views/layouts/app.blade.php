@@ -256,6 +256,15 @@
 
 
     <script>
+
+        function displayMessage(message, id) {
+            var span = document.getElementById(id);
+            span.innerHTML = message + "<br>";
+            // Set timeout to clear the text after the specified duration
+            setTimeout(function() {
+                span.innerText = "";
+            }, 2000);
+        }
         
         $(document).on('submit', 'form.editForm', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
@@ -270,6 +279,10 @@
                     $('#app').load(url + ' #app', function() {
                         history.pushState(null, '', url); // Update the URL in the address bar
                     });
+
+                    setTimeout(function() {
+                    displayMessage("Item edited successfully", "edit-message")
+                    }, 100);
                 },
                 error: function(xhr, status, error) {
                     // Handle errors
@@ -291,13 +304,22 @@
                     $('#app').load(url + ' #app', function() {
                         history.pushState(null, '', url); // Update the URL in the address bar
                     });
+
+                    setTimeout(function() {
+                    displayMessage("Item added successfully", "add-to-cart-message")
+                    }, 300); // Delay AJAX call by 2 seconds
                 },
                 error: function(xhr, status, error) {
+                    
                     // Handle errors
                     console.error(error);
                 }
             });
+
+           
         });
+
+        
 
         $(document).on('submit', 'form.buyForm', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
@@ -307,11 +329,16 @@
                 url: $(this).attr('action'),
                 type: $(this).attr('method'),
                 data: formData,
-                success: function(response) {
+                success: function(response) {                    
                     var url = response; // Get the URL from the link
                     $('#app').load(url + ' #app', function() {
                         history.pushState(null, '', url); // Update the URL in the address bar
                     });
+
+                    setTimeout(function() {
+                    displayMessage("Order Finalized successfully", "buy-message")
+                    }, 100);
+                    
                 },
                 error: function(xhr, status, error) {
                     // Handle errors
@@ -329,6 +356,7 @@
                 type: $(this).attr('method'),
                 data: formData,
                 success: function(response) {
+                    displayMessage("Item added successfully", "product-added-message")
                     var url = response; // Get the URL from the link
                     $('#app').load(url + ' #app', function() {
                         history.pushState(null, '', url); // Update the URL in the address bar

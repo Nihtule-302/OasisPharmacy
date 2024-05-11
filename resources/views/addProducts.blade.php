@@ -10,19 +10,17 @@
                         <h2 class="mb-0">Management</h2>
                     </div>
 
+                    
 
                     <div class="card-body bg-white-opacity">
-                        <h3 class="card-title">Add Product</h3>
+                        <h3 class="card-title">
+                            Add Product
+                        </h3>
+                        <span id="product-added-message" style="color: blue; display: block; margin: 0 auto; width: fit-content; font-weight: bold;">
+                        </span>
 
-                        @if (session('successMsg'))
-                            <div class="alert alert-success" role="alert"align="center">
-                                <font size=5 face="Droid Arabic Kufi">
-                                    {{ session('successMsg') }}
-                                </font>
-                            </div>
-                            <br>
-                        @endif
-
+                        <br>
+                        
                         <form class = "addProductForm" method="POST" action="{{ route('save-product') }}" >
                             @csrf
 
@@ -112,13 +110,12 @@
                                     </button>
                                 </div>
                             </div>
-                            
-                        </form>
-                    
-                         
+                        </form>  
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 @endsection

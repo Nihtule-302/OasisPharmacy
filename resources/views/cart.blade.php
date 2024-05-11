@@ -11,59 +11,50 @@
                     </div>
 
                     <div class="card-body bg-white-opacity">
-                        <table>
-                            <thead>
-                              <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($items as $item)
+                        <span id="buy-message" style="color: blue; display: block; margin: 0 auto; width: fit-content; font-weight: bold;">
+                        </span>
+                        <div style="max-height: 500px; overflow-y: auto;">
+                            <table>
+                                <thead>
                                 <tr>
-                                  <td>{{$item->product_name}}</td>
-                                  <td>{{$item->price}}</td>
-                                  <td>{{$item->quantity}}</td>
-
-                                  <td>
-                                    <a href="{{ route('remove-from-cart', $item->id) }}">
-                                        remove
-                                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                  </td>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th></th>
                                 </tr>
-                              @endforeach
-                            </tbody>
-                        </table>
-                        Total Price = {{$totalCost}}
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                    <tr>
+                                    <td>{{$item->product_name}}</td>
+                                    <td>{{$item->price}}</td>
+                                    <td>{{$item->quantity}}</td>
 
-                        <br>
-                        <br>
+                                    <td>
+                                        <a href="{{ route('remove-from-cart', $item->id) }}">
+                                            remove
+                                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        
+                            Total Price = {{$totalCost}}
 
-                        @if (session('success'))
-                          <div id="flash-message" class="modal-message">
-                              <p>{{ session('success') }}</p>
-                          </div>
-                        @endif
-                        @if (session('error'))
-                          <div id="flash-message" class="modal-message">
-                              <p>{{ session('error') }}</p>
-                          </div>
-                        @endif
+                            <br>
+                            <br>
 
-                        <br>
-                        <br>
-
-                        @if(!$items->isEmpty())
-                          <div class="col-md-6 offset-md-3">
-                              <form class="buyForm" action="{{ route('buy', $order->id) }}" method="GET">
-                                  <button type="submit" class="btn btn-primary btn-block mb-4">
-                                      Buy
-                                  </button>
-                              </form>
-                          </div>
-                        @endif
+                            @if(!$items->isEmpty())
+                            <div class="col-md-6 offset-md-3">
+                                <form class="buyForm" action="{{ route('buy', $order->id) }}" method="GET">
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                                        Buy
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
